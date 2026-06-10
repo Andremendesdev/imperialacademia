@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { getWhatsAppHref } from "@/lib/site-contact";
 
 const navLinks = [
   { label: "Início",     href: "#inicio"    },
@@ -32,21 +33,21 @@ export function Navbar() {
       >
         <div className="mx-auto flex h-[70px] max-w-7xl items-center justify-between px-6 lg:px-12">
           {/* ── Logo ── */}
-          <a href="#inicio" className="group flex items-center gap-2">
+          <a href="#inicio" className="group flex items-center gap-1">
             <Image
               src="/icon.png"
               alt="Academia Imperial"
               width={1432}
               height={901}
               unoptimized
-              className="navbar-logo-icon h-11 w-auto max-h-12 shrink-0 sm:h-12 sm:max-h-[3.25rem]"
+              className="navbar-logo-icon h-8 w-auto max-h-9 shrink-0 sm:h-9 sm:max-h-10"
               priority
             />
             <div className="flex flex-col leading-none">
-              <span className="text-[9px] font-semibold tracking-[0.22em] text-zinc-400 uppercase">
+              <span className="text-[8px] font-semibold tracking-[0.2em] text-zinc-400 uppercase">
                 Academia
               </span>
-              <span className="font-display text-lg tracking-[0.06em] text-white sm:text-xl">
+              <span className="font-display text-base tracking-[0.06em] text-white sm:text-lg">
                 IMPERIAL
               </span>
             </div>
@@ -69,10 +70,12 @@ export function Navbar() {
           {/* ── CTA + Mobile Toggle ── */}
           <div className="flex items-center gap-3">
             <a
-              href="#planos"
-              className="neon-gold-soft btn-shimmer relative hidden overflow-hidden rounded-lg bg-amber-600 px-5 py-2.5 text-[13px] font-semibold tracking-wide text-white shadow-[0_0_18px_rgba(217,119,6,0.45)] transition-all duration-300 hover:bg-amber-500 hover:shadow-[0_0_32px_rgba(217,119,6,0.65)] md:inline-flex"
+              href={getWhatsAppHref()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="wpp-gold-pulse neon-gold-soft btn-shimmer relative hidden overflow-visible rounded-lg bg-amber-600 px-5 py-2.5 text-[13px] font-semibold tracking-wide text-white transition-all duration-300 hover:bg-amber-500 md:inline-flex"
             >
-              Começar Agora
+              Falar no WhatsApp
             </a>
 
             <button
@@ -113,10 +116,12 @@ export function Navbar() {
           </nav>
           <div className="mt-3 border-t border-white/5 pt-3">
             <a
-              href="#planos"
-              className="block rounded-xl bg-amber-600 px-4 py-3 text-center text-sm font-semibold text-white"
+              href={getWhatsAppHref()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="wpp-gold-pulse block rounded-xl bg-amber-600 px-4 py-3 text-center text-sm font-semibold text-white"
             >
-              Começar Agora
+              Falar no WhatsApp
             </a>
           </div>
         </div>

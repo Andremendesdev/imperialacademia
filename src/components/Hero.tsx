@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { getWhatsAppHref } from "@/lib/site-contact";
 
 const stats = [
   { value: "+1.200", label: "Alunos Ativos" },
@@ -19,9 +20,9 @@ const stats = [
 ];
 
 const trustBadges = [
-  { icon: Dumbbell, text: "+200 Equipamentos" },
-  { icon: Shield, text: "Equipamentos premium" },
-  { icon: Zap, text: "Acomp. profissional" },
+  { icon: Dumbbell, text: "+200 Equipamentos", short: "+200 equip." },
+  { icon: Shield, text: "Equipamentos premium", short: "Premium" },
+  { icon: Zap, text: "Acomp. profissional", short: "Acompanhamento" },
 ];
 
 export function Hero() {
@@ -45,6 +46,10 @@ export function Hero() {
 
       {/* ── Escurecimento para leitura do texto ── */}
       <div className="hero-bg-scrim pointer-events-none absolute inset-0 min-h-dvh" aria-hidden />
+      <div
+        className="hero-bg-content-scrim pointer-events-none absolute inset-0 min-h-dvh"
+        aria-hidden
+      />
 
       {/* ── Overlay dourado ── */}
       <div
@@ -80,30 +85,33 @@ export function Hero() {
         aria-hidden
       />
       {/* ── Content ── */}
-      <div className="relative z-10 flex min-h-dvh w-full flex-col pt-[70px] pb-4 sm:pb-6 md:items-start lg:pt-[calc(70px+4.5rem)] lg:pb-8">
-        <div className="mx-auto w-full max-w-7xl px-6 pt-16 pb-10 sm:py-12 lg:px-12 lg:pb-10 lg:pt-6">
+      <div className="relative z-10 flex min-h-dvh w-full flex-col pt-[70px] pb-6 sm:pb-6 md:items-start lg:pt-[calc(70px+4.5rem)] lg:pb-8">
+        <div className="mx-auto w-full max-w-7xl px-6 pt-14 pb-28 sm:py-12 sm:pb-10 lg:px-12 lg:pb-10 lg:pt-6">
           <div className="max-w-3xl">
-            <div className="flex flex-col gap-7 lg:gap-9">
+            <div className="flex flex-col gap-5 sm:gap-5 lg:gap-6">
               <Badge
                 variant="neon"
-                className="animate-slide-up w-fit gap-1.5 px-2.5 py-1 text-[8px] font-semibold tracking-[0.18em] uppercase sm:text-[9px]"
+                className="badge-section animate-slide-up w-fit"
               >
                 <span
                   className="neon-dot glow-pulse h-1 w-1 rounded-full"
                   aria-hidden
                 />
-                Academia Imperial · Melhor Academia de  Piraju.
+                <span className="sm:hidden">Melhor academia de Piraju</span>
+                <span className="hidden sm:inline">
+                  Academia Imperial · Melhor Academia de Piraju
+                </span>
               </Badge>
 
               <div className="flex flex-col gap-0.5 sm:gap-1">
                 <h1
                   id="hero-heading"
-                  className="animate-slide-up delay-100 flex flex-col gap-2 leading-none sm:gap-3"
+                  className="animate-slide-up delay-100 flex flex-col gap-1 leading-none sm:gap-1.5"
                 >
                   <span className="hero-title-welcome flex items-center gap-2 font-sans text-[clamp(0.7rem,2.2vw,0.9rem)] font-semibold uppercase tracking-[0.35em] text-amber-400/90">
-                    <span className="hero-eyebrow-line" aria-hidden />
+                    <span className="hero-eyebrow-line hidden sm:inline-block" aria-hidden />
                     Bem-vindo à
-                    <span className="hero-eyebrow-line" aria-hidden />
+                    <span className="hero-eyebrow-line hidden sm:inline-block" aria-hidden />
                   </span>
 
                   <span className="relative inline-flex flex-col">
@@ -131,52 +139,63 @@ export function Hero() {
               </div>
 
               <p className="hero-lead animate-slide-up delay-300 max-w-[27rem] text-base font-light leading-[1.75] text-zinc-300 sm:text-[1.05rem]">
-                Profissionais qualificados, treino personalizado e equipamentos
-                de qualidade!
+                Treinos personalizados, equipamentos modernos e resultados reais.
               </p>
 
-              <div className="animate-slide-up delay-400 mx-auto flex w-full max-w-[min(100%,21rem)] flex-col items-stretch gap-3 sm:mx-0 sm:max-w-none sm:flex-row sm:flex-wrap sm:gap-4">
+              <div className="animate-slide-up delay-400 flex w-full flex-col items-stretch gap-3 sm:mx-0 sm:max-w-none sm:flex-row sm:flex-wrap sm:gap-4">
                 <Button
                   asChild
                   size="lg"
-                  className="hero-btn hero-btn-primary group w-full max-sm:[&_a]:w-full rounded-full sm:w-auto"
+                  className="hero-btn hero-btn-primary wpp-gold-pulse group w-full rounded-full sm:w-auto"
                 >
-                  <Link href="#planos" className="w-full justify-center">
-                    Começar Agora
+                  <a
+                    href={getWhatsAppHref()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full justify-center"
+                  >
+                    Falar no WhatsApp
                     <ArrowRight
                       size={16}
                       className="transition-transform duration-300 group-hover:translate-x-0.5"
                       aria-hidden
                     />
-                  </Link>
+                  </a>
                 </Button>
                 <Button
                   variant="outline"
                   size="lg"
                   asChild
-                  className="hero-btn hero-btn-secondary w-full max-sm:[&_a]:w-full rounded-full sm:w-auto"
+                  className="hero-btn hero-btn-secondary hero-btn-secondary--compact w-full rounded-full font-normal sm:w-auto"
                 >
                   <Link href="#estrutura" className="w-full justify-center">
-                    Ver Estrutura
+                    Ver fotos da Academia
                   </Link>
                 </Button>
               </div>
 
-              <div className="animate-slide-up delay-500 mx-auto grid w-full max-w-xl grid-cols-3 gap-1.5 max-sm:justify-items-center sm:gap-3">
-                {trustBadges.map(({ icon: Icon, text }) => (
-                  <Badge
-                    key={text}
-                    variant="default"
-                    className="min-w-0 flex-col justify-center gap-1 px-1.5 py-1.5 text-center text-[8px] leading-snug whitespace-normal sm:flex-row sm:gap-2 sm:px-3 sm:text-[11px] transition-shadow hover:shadow-[0_0_14px_rgba(217,119,6,0.22)] hover:border-amber-800/40"
-                  >
-                    <Icon size={12} className="neon-icon-gold shrink-0 max-sm:h-2.5 max-sm:w-2.5" aria-hidden />
-                    {text}
-                  </Badge>
+              <div
+                className="hero-trust-scroll animate-slide-up delay-500 -mx-2 flex w-[calc(100%+1rem)] gap-2.5 overflow-x-auto px-2 pb-1 sm:mx-auto sm:grid sm:w-full sm:max-w-xl sm:grid-cols-3 sm:gap-3 sm:overflow-visible sm:px-0"
+                role="list"
+                aria-label="Diferenciais da academia"
+              >
+                {trustBadges.map(({ icon: Icon, text, short }) => (
+                  <div key={text} role="listitem" className="hero-trust-card">
+                    <Icon
+                      size={14}
+                      className="neon-icon-gold shrink-0"
+                      aria-hidden
+                    />
+                    <span className="whitespace-normal sm:hidden">{short}</span>
+                    <span className="hidden whitespace-normal sm:inline">
+                      {text}
+                    </span>
+                  </div>
                 ))}
               </div>
 
               <div
-                className="animate-slide-up delay-600 mx-auto grid w-full max-w-xl grid-cols-3 divide-x divide-zinc-800/60 border-t border-amber-900/25 pt-6 text-center shadow-[0_-1px_20px_rgba(217,119,6,0.08)] max-sm:justify-items-center lg:border-0 lg:pt-1 lg:shadow-none"
+                className="animate-slide-up delay-600 mx-auto hidden w-full max-w-xl grid-cols-3 divide-x divide-zinc-800/60 border-t border-amber-900/25 pt-6 text-center shadow-[0_-1px_20px_rgba(217,119,6,0.08)] sm:grid lg:border-0 lg:pt-1 lg:shadow-none"
                 role="list"
                 aria-label="Indicadores da academia"
               >
@@ -186,12 +205,12 @@ export function Hero() {
                     role="listitem"
                     className="flex min-w-0 flex-col items-center gap-0.5 px-2 sm:min-w-[100px] sm:items-start sm:px-5 sm:text-left first:sm:pl-0 last:sm:pr-0"
                   >
-                    <span className="flex items-center justify-center gap-1 text-base font-semibold tracking-tight text-white text-neon-gold max-sm:leading-tight sm:text-xl">
+                    <span className="flex items-center justify-center gap-1 text-base font-semibold tracking-tight text-white max-sm:leading-tight sm:text-xl">
                       {value}
                       {icon && (
                         <Star
                           size={14}
-                          className="fill-amber-400 text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.9)]"
+                          className="fill-amber-400 text-amber-400 drop-shadow-[0_0_4px_rgba(251,191,36,0.45)]"
                           aria-label="estrelas"
                         />
                       )}
@@ -207,9 +226,9 @@ export function Hero() {
         </div>
 
         <a
-          href="#planos"
-          className="group/explore animate-fade-in delay-800 mt-2 flex flex-col items-center gap-0.5 self-center text-zinc-600 transition-colors hover:text-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600/50 rounded-lg px-1 lg:absolute lg:bottom-10 lg:left-1/2 lg:mt-0 lg:-translate-x-1/2 lg:gap-1.5 lg:px-2"
-          aria-label="Rolar para conhecer os planos"
+          href="#estrutura"
+          className="group/explore animate-fade-in delay-800 mt-2 hidden flex-col items-center gap-0.5 self-center text-zinc-600 transition-colors hover:text-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600/50 rounded-lg px-1 sm:flex lg:absolute lg:bottom-10 lg:left-1/2 lg:mt-0 lg:-translate-x-1/2 lg:gap-1.5 lg:px-2"
+          aria-label="Rolar para conhecer a estrutura"
         >
           <span className="text-[8px] font-semibold tracking-[0.22em] uppercase sm:text-[9px] lg:text-[11px] lg:tracking-[0.26em]">
             Explorar

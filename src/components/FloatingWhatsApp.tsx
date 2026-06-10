@@ -1,4 +1,4 @@
-import { siteContact } from "@/lib/site-contact";
+import { getWhatsAppHref, siteContact } from "@/lib/site-contact";
 
 function WhatsAppIcon({ size = 26 }: { size?: number }) {
   return (
@@ -14,25 +14,20 @@ function WhatsAppIcon({ size = 26 }: { size?: number }) {
   );
 }
 
-function getWhatsAppHref() {
-  const { number, message } = siteContact.whatsapp;
-  const params = new URLSearchParams({ text: message });
-  return `https://wa.me/${number}?${params.toString()}`;
-}
-
 export function FloatingWhatsApp() {
   return (
     <a
       href={getWhatsAppHref()}
       target="_blank"
       rel="noopener noreferrer"
-      className="whatsapp-fab group fixed right-5 bottom-5 z-40 flex items-center gap-0 overflow-hidden rounded-full border border-amber-600/50 bg-[#25D366] text-white shadow-[0_0_24px_rgba(37,211,102,0.4),0_0_28px_rgba(217,119,6,0.3)] transition-[transform,box-shadow,gap,padding] duration-300 hover:scale-[1.04] hover:border-amber-600/70 hover:shadow-[0_0_36px_rgba(37,211,102,0.55),0_0_44px_rgba(217,119,6,0.45)] active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:scale-100 sm:right-6 sm:bottom-6"
+      className="whatsapp-fab group fixed right-4 bottom-4 z-40 flex h-12 w-12 items-center justify-center overflow-visible rounded-full border border-amber-600/55 bg-[#25D366] text-white transition-[transform,border-color] duration-300 hover:scale-[1.04] hover:border-amber-500/90 active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:scale-100 sm:right-6 sm:bottom-6 sm:h-auto sm:w-auto sm:gap-0"
       aria-label={`Conversar no WhatsApp com a ${siteContact.name}`}
     >
       <span className="whatsapp-fab-pulse" aria-hidden />
+      <span className="whatsapp-fab-pulse whatsapp-fab-pulse--delay" aria-hidden />
       <span className="whatsapp-fab-ring" aria-hidden />
 
-      <span className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center">
+      <span className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center sm:h-14 sm:w-14 [&_svg]:h-[22px] [&_svg]:w-[22px] sm:[&_svg]:h-[26px] sm:[&_svg]:w-[26px]">
         <WhatsAppIcon />
       </span>
 

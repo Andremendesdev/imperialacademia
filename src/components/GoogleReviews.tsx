@@ -138,7 +138,7 @@ export function GoogleReviews() {
           <div className="max-w-xl">
             <Badge
               variant="neon"
-              className="mb-3 w-fit gap-1.5 px-2.5 py-1 text-[8px] font-semibold tracking-[0.18em] uppercase sm:text-[9px]"
+              className="badge-section w-fit"
             >
               <span
                 className="neon-dot glow-pulse h-1 w-1 rounded-full"
@@ -148,10 +148,10 @@ export function GoogleReviews() {
             </Badge>
 
             <h2 id="reviews-heading" className="space-y-0 leading-none">
-              <span className="block font-display text-[clamp(1.75rem,5vw,3rem)] leading-[0.9] tracking-[0.02em] text-[var(--white-neon)]">
+              <span className="section-title-top">
                 QUEM TREINA,
               </span>
-              <span className="block font-display text-[clamp(1.75rem,5vw,3rem)] leading-[0.9] tracking-[0.02em] text-amber-500 text-glow-gold">
+              <span className="section-title-bottom">
                 RECOMENDA.
               </span>
             </h2>

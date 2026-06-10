@@ -154,10 +154,10 @@ export function Location() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
         {/* Header */}
-        <div className="mb-10 max-w-2xl lg:mb-12">
+        <div className="mb-6 max-w-2xl lg:mb-8">
           <Badge
             variant="neon"
-            className={`mb-5 w-fit gap-1.5 px-2.5 py-1 text-[8px] font-semibold tracking-[0.18em] uppercase sm:text-[9px] ${
+            className={`badge-section w-fit ${
               visible ? "animate-slide-up" : "opacity-0"
             }`}
           >
@@ -174,10 +174,10 @@ export function Location() {
               visible ? "animate-slide-up delay-100" : "opacity-0"
             }`}
           >
-            <span className="block font-display text-[clamp(2.25rem,6vw,4.5rem)] leading-[0.9] tracking-[0.02em] text-[var(--white-neon)]">
+            <span className="section-title-top section-title-top--lg">
               UMA ESTRUTURA
             </span>
-            <span className="block font-display text-[clamp(2.25rem,6vw,4.5rem)] leading-[0.9] tracking-[0.02em] text-amber-500 text-glow-gold">
+            <span className="section-title-bottom section-title-bottom--lg">
               FEITA PARA SUA EVOLUÇÃO.
             </span>
           </h2>

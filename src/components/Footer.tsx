@@ -101,7 +101,7 @@ export function Footer() {
         <div className="mb-10 max-w-2xl lg:mb-14">
           <Badge
             variant="neon"
-            className="mb-4 w-fit gap-1.5 px-2.5 py-1 text-[8px] font-semibold tracking-[0.18em] uppercase sm:text-[9px]"
+            className="badge-section w-fit"
           >
             <span
               className="neon-dot glow-pulse h-1 w-1 rounded-full"
@@ -111,10 +111,10 @@ export function Footer() {
           </Badge>
 
           <h2 id="footer-heading" className="space-y-0 leading-none">
-            <span className="block font-display text-[clamp(1.75rem,5vw,3.25rem)] leading-[0.9] tracking-[0.02em] text-[var(--white-neon)]">
+            <span className="section-title-top">
               VENHA NOS VISITAR.
             </span>
-            <span className="block font-display text-[clamp(1.75rem,5vw,3.25rem)] leading-[0.9] tracking-[0.02em] text-amber-500 text-glow-gold">
+            <span className="section-title-bottom">
               ESTAMOS TE ESPERANDO.
             </span>
           </h2>
@@ -137,7 +137,7 @@ export function Footer() {
                 width={1432}
                 height={901}
                 unoptimized
-                className="navbar-logo-icon h-12 w-auto max-h-14 shrink-0"
+                className="navbar-logo-icon h-9 w-auto max-h-10 shrink-0"
                 sizes="56px"
               />
               <div className="-ml-0.5 flex flex-col leading-none">

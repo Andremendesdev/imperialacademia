@@ -157,15 +157,15 @@
   flex: 1;
   max-width: 2rem;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.6), transparent);
+  background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.48), transparent);
 }
 
 /* Hero — Academia e Imperial: mesmo tamanho */
 .hero-title-line {
   font-family: var(--font-bebas), sans-serif;
-  font-size: clamp(3.25rem, 14vw, 7.5rem);
-  line-height: 0.9;
-  letter-spacing: 0.05em;
+  font-size: clamp(2.5rem, 11vw, 5.75rem);
+  line-height: 0.88;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
@@ -173,9 +173,9 @@
 .hero-title-imperial {
   text-shadow:
     0 1px 0 rgba(0, 0, 0, 0.6),
-    0 0 12px rgba(255, 255, 255, 0.55),
-    0 0 28px rgba(255, 255, 255, 0.18),
-    0 0 50px rgba(251, 191, 36, 0.25);
+    0 0 12px rgba(255, 255, 255, 0.42),
+    0 0 28px rgba(255, 255, 255, 0.14),
+    0 0 50px rgba(251, 191, 36, 0.18);
 }
 
 /* Hero — "Imperial" em dourado neon vibrante */
@@ -193,17 +193,17 @@
   background-clip: text;
   text-shadow: none;
   filter:
-    drop-shadow(0 0 8px rgba(251, 191, 36, 0.75))
-    drop-shadow(0 0 20px rgba(217, 119, 6, 0.55))
-    drop-shadow(0 0 40px rgba(217, 119, 6, 0.3));
+    drop-shadow(0 0 6px rgba(251, 191, 36, 0.42))
+    drop-shadow(0 0 14px rgba(217, 119, 6, 0.28))
+    drop-shadow(0 0 28px rgba(217, 119, 6, 0.14));
 }
 
 /* Hero — halo dourado de fundo por trás de "Academia" */
 .hero-title-glow-bg {
   background: radial-gradient(
     ellipse 80% 100% at 30% 50%,
-    rgba(251, 191, 36, 0.12) 0%,
-    rgba(217, 119, 6, 0.06) 50%,
+    rgba(251, 191, 36, 0.08) 0%,
+    rgba(217, 119, 6, 0.04) 50%,
     transparent 100%
   );
   filter: blur(12px);
@@ -220,10 +220,21 @@
 .hero-bg-scrim {
   background: linear-gradient(
     180deg,
-    rgba(6, 6, 8, 0.6) 0%,
-    rgba(6, 6, 8, 0.52) 45%,
-    rgba(6, 6, 8, 0.66) 100%
+    rgba(6, 6, 8, 0.72) 0%,
+    rgba(6, 6, 8, 0.68) 40%,
+    rgba(6, 6, 8, 0.78) 100%
   );
+}
+
+/* Hero — foco escuro no centro do conteúdo */
+.hero-bg-content-scrim {
+  background:
+    radial-gradient(
+      ellipse 130% 70% at 50% 32%,
+      rgba(6, 6, 8, 0.82) 0%,
+      rgba(6, 6, 8, 0.45) 55%,
+      transparent 100%
+    );
 }
 
 /* Cinematic full-bleed background — desktop */
@@ -307,8 +318,8 @@
   );
   color: #fff;
   box-shadow:
-    0 4px 24px rgba(217, 119, 6, 0.35),
-    0 0 20px rgba(251, 191, 36, 0.2);
+    0 4px 28px rgba(217, 119, 6, 0.42),
+    0 0 26px rgba(251, 191, 36, 0.28);
 }
 
 .hero-btn.hero-btn-primary:hover {
@@ -319,13 +330,55 @@
     rgba(245, 158, 11, 0.98) 100%
   );
   box-shadow:
-    0 6px 28px rgba(217, 119, 6, 0.45),
-    0 0 28px rgba(251, 191, 36, 0.3);
+    0 6px 32px rgba(217, 119, 6, 0.54),
+    0 0 36px rgba(251, 191, 36, 0.38);
   transform: translateY(-1px);
 }
 
 .hero-btn.hero-btn-primary:active {
   transform: translateY(0);
+}
+
+/* Botão WhatsApp — pulso dourado */
+.wpp-gold-pulse {
+  position: relative;
+  isolation: isolate;
+  animation: wpp-gold-glow 2.2s ease-in-out infinite;
+}
+
+.wpp-gold-pulse::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  animation: wpp-gold-ring 2.2s ease-out infinite;
+}
+
+@keyframes wpp-gold-glow {
+  0%, 100% {
+    box-shadow:
+      0 4px 28px rgba(217, 119, 6, 0.38),
+      0 0 22px rgba(251, 191, 36, 0.22);
+  }
+  50% {
+    box-shadow:
+      0 4px 34px rgba(217, 119, 6, 0.55),
+      0 0 38px rgba(251, 191, 36, 0.42);
+  }
+}
+
+@keyframes wpp-gold-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(251, 191, 36, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 14px rgba(251, 191, 36, 0);
+  }
 }
 
 .hero-btn.hero-btn-secondary {
@@ -342,13 +395,25 @@
   background: rgba(217, 119, 6, 0.12);
   color: #fff;
   box-shadow:
-    0 4px 20px rgba(217, 119, 6, 0.2),
-    0 0 16px rgba(251, 191, 36, 0.12);
+    0 4px 24px rgba(217, 119, 6, 0.28),
+    0 0 20px rgba(251, 191, 36, 0.16);
   transform: translateY(-1px);
 }
 
 .hero-btn.hero-btn-secondary:active {
   transform: translateY(0);
+}
+
+@media (max-width: 639px) {
+  .hero-btn.hero-btn-secondary--compact {
+    min-height: 2.75rem;
+    padding-inline: 1.25rem;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -367,25 +432,58 @@
     0 0 80px rgba(217, 119, 6, 0.12);
 }
 
-/* Títulos de seção — linha superior: dourado invertido (halo claro, sem neon forte) */
-.section-title-top {
-  color: var(--gold-dim);
-  text-shadow:
-    0 1px 0 rgba(0, 0, 0, 0.55),
-    0 0 10px rgba(255, 255, 255, 0.4),
-    0 0 22px rgba(251, 191, 36, 0.32),
-    0 0 40px rgba(217, 119, 6, 0.18);
+/* Badge de seção — compacto */
+.badge-section {
+  margin-bottom: 0.5rem;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.4375rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
-/* Títulos de seção — linha inferior: dourado neon vibrante */
-.section-title-bottom {
-  color: var(--gold-neon-bright);
+@media (min-width: 640px) {
+  .badge-section {
+    margin-bottom: 0.625rem;
+    font-size: 0.5rem;
+  }
+}
+
+.badge-section .neon-dot {
+  width: 0.25rem;
+  height: 0.25rem;
+}
+
+/* Títulos de seção — linha superior: branco suave */
+.section-title-top {
+  display: block;
+  font-family: var(--font-bebas), sans-serif;
+  font-size: clamp(1.4rem, 4vw, 2.5rem);
+  line-height: 0.88;
+  letter-spacing: 0.02em;
+  color: var(--white-neon);
   text-shadow:
-    0 0 6px rgba(252, 211, 77, 0.95),
-    0 0 14px rgba(251, 191, 36, 0.8),
-    0 0 28px rgba(217, 119, 6, 0.55),
-    0 0 52px rgba(217, 119, 6, 0.3),
-    0 0 80px rgba(217, 119, 6, 0.12);
+    0 1px 0 rgba(0, 0, 0, 0.45),
+    0 0 12px rgba(255, 255, 255, 0.18);
+}
+
+/* Títulos de seção — linha inferior: branco */
+.section-title-bottom {
+  display: block;
+  font-family: var(--font-bebas), sans-serif;
+  font-size: clamp(1.4rem, 4vw, 2.5rem);
+  line-height: 0.88;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  text-shadow:
+    0 1px 0 rgba(0, 0, 0, 0.4),
+    0 0 10px rgba(255, 255, 255, 0.12);
+}
+
+.section-title-top--lg,
+.section-title-bottom--lg {
+  font-size: clamp(1.75rem, 5vw, 3.35rem);
 }
 
 /* Branco neon + leve halo dourado — palavras laterais do headline */
@@ -404,71 +502,71 @@
     0 0 50px rgba(255, 255, 255, 0.08);
 }
 
-/* Dourado neon — utilitários */
+/* Dourado neon — utilitários (tom reduzido) */
 .text-neon-gold {
   color: var(--gold-neon-bright);
   text-shadow:
-    0 0 8px rgba(252, 211, 77, 0.95),
-    0 0 18px rgba(251, 191, 36, 0.65),
-    0 0 32px rgba(217, 119, 6, 0.35);
+    0 0 6px rgba(252, 211, 77, 0.55),
+    0 0 14px rgba(251, 191, 36, 0.35),
+    0 0 24px rgba(217, 119, 6, 0.18);
 }
 
 .neon-gold-soft {
   box-shadow:
-    0 0 16px rgba(251, 191, 36, 0.45),
-    0 0 32px rgba(217, 119, 6, 0.25),
-    inset 0 0 12px rgba(252, 211, 77, 0.08);
+    0 0 14px rgba(251, 191, 36, 0.38),
+    0 0 28px rgba(217, 119, 6, 0.2),
+    inset 0 0 10px rgba(252, 211, 77, 0.06);
 }
 
 .neon-gold-line {
   background: linear-gradient(
     90deg,
-    rgba(217, 119, 6, 0.35),
-    rgba(251, 191, 36, 0.95),
-    rgba(252, 211, 77, 0.85)
+    rgba(217, 119, 6, 0.2),
+    rgba(251, 191, 36, 0.55),
+    rgba(252, 211, 77, 0.48)
   );
   box-shadow:
-    0 0 8px rgba(251, 191, 36, 0.85),
-    0 0 18px rgba(217, 119, 6, 0.45);
+    0 0 6px rgba(251, 191, 36, 0.45),
+    0 0 12px rgba(217, 119, 6, 0.22);
 }
 
 .neon-gold-line--dot {
   background: var(--gold-neon-bright);
   box-shadow:
-    0 0 6px rgba(252, 211, 77, 1),
-    0 0 14px rgba(251, 191, 36, 0.85),
-    0 0 24px rgba(217, 119, 6, 0.5);
+    0 0 4px rgba(252, 211, 77, 0.55),
+    0 0 10px rgba(251, 191, 36, 0.42),
+    0 0 18px rgba(217, 119, 6, 0.22);
 }
 
 .neon-gold-line--fade {
   background: linear-gradient(
     90deg,
-    rgba(251, 191, 36, 0.75),
-    rgba(217, 119, 6, 0.25)
+    rgba(251, 191, 36, 0.42),
+    rgba(217, 119, 6, 0.14)
   );
-  box-shadow: 0 0 10px rgba(251, 191, 36, 0.35);
+  box-shadow: 0 0 6px rgba(251, 191, 36, 0.18);
 }
 
 .neon-dot {
   background: var(--gold-neon-bright);
   box-shadow:
-    0 0 6px rgba(252, 211, 77, 1),
-    0 0 14px rgba(251, 191, 36, 0.85),
-    0 0 24px rgba(217, 119, 6, 0.5);
+    0 0 4px rgba(252, 211, 77, 0.55),
+    0 0 10px rgba(251, 191, 36, 0.42),
+    0 0 18px rgba(217, 119, 6, 0.22);
 }
 
 .neon-icon-gold {
   color: var(--gold-neon-bright);
   filter:
-    drop-shadow(0 0 3px rgba(252, 211, 77, 0.95))
-    drop-shadow(0 0 8px rgba(251, 191, 36, 0.75));
+    drop-shadow(0 0 2px rgba(252, 211, 77, 0.55))
+    drop-shadow(0 0 6px rgba(251, 191, 36, 0.4));
 }
 
 .badge-neon-glow {
   box-shadow:
-    0 0 14px rgba(251, 191, 36, 0.35),
-    0 0 28px rgba(217, 119, 6, 0.15),
-    inset 0 0 14px rgba(251, 191, 36, 0.08);
+    0 0 10px rgba(251, 191, 36, 0.18),
+    0 0 20px rgba(217, 119, 6, 0.08),
+    inset 0 0 10px rgba(251, 191, 36, 0.04);
 }
 
 .hero-headline-sep {
@@ -485,6 +583,81 @@
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
   border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Hero — cards de vidro abaixo dos CTAs */
+.hero-trust-scroll {
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (min-width: 640px) {
+  .hero-trust-scroll {
+    scroll-snap-type: none;
+  }
+}
+
+.hero-trust-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-trust-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  border-radius: 0.875rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(8, 8, 12, 0.72);
+  padding: 0.625rem 0.75rem;
+  text-align: left;
+  font-size: 0.625rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: rgba(244, 244, 245, 0.95);
+  backdrop-filter: blur(18px) saturate(1.35);
+  -webkit-backdrop-filter: blur(18px) saturate(1.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 4px 20px rgba(0, 0, 0, 0.28);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+@media (max-width: 639px) {
+  .hero-trust-card {
+    min-width: 9.5rem;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.7rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .hero-trust-card {
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 0.875rem;
+    font-size: 0.6875rem;
+    text-align: center;
+    background: rgba(8, 8, 12, 0.45);
+  }
+}
+
+.hero-trust-card:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(12, 10, 8, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 4px 24px rgba(0, 0, 0, 0.25),
+    0 0 14px rgba(255, 255, 255, 0.06);
 }
 
 /* Ícone menu mobile — dourado neon */
@@ -506,18 +679,18 @@
 .navbar-logo-icon {
   display: block;
   width: auto;
-  max-width: 7rem;
+  max-width: 4.5rem;
   object-fit: contain;
   filter:
-    drop-shadow(0 0 4px rgba(251, 191, 36, 0.55))
-    drop-shadow(0 0 10px rgba(217, 119, 6, 0.35));
+    drop-shadow(0 0 4px rgba(251, 191, 36, 0.44))
+    drop-shadow(0 0 10px rgba(217, 119, 6, 0.28));
   transition: filter 0.3s ease;
 }
 
 a.group:hover .navbar-logo-icon {
   filter:
-    drop-shadow(0 0 6px rgba(252, 211, 77, 0.85))
-    drop-shadow(0 0 14px rgba(251, 191, 36, 0.55));
+    drop-shadow(0 0 6px rgba(252, 211, 77, 0.68))
+    drop-shadow(0 0 14px rgba(251, 191, 36, 0.44));
 }
 
 /* Navbar — borda inferior neon (branco + dourado) */
@@ -535,7 +708,7 @@ a.group:hover .navbar-logo-icon {
     rgba(251, 191, 36, 0.45) 80%,
     transparent 100%
   );
-  box-shadow: 0 0 20px rgba(251, 191, 36, 0.5), 0 0 40px rgba(217, 119, 6, 0.25);
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.3), 0 0 24px rgba(217, 119, 6, 0.14);
   pointer-events: none;
 }
 
@@ -554,9 +727,9 @@ a.group:hover .navbar-logo-icon {
     transparent 100%
   );
   box-shadow:
-    0 0 4px rgba(255, 255, 255, 0.7),
-    0 0 14px rgba(242, 242, 255, 0.35),
-    0 0 28px rgba(255, 255, 255, 0.12);
+    0 0 3px rgba(255, 255, 255, 0.45),
+    0 0 10px rgba(242, 242, 255, 0.2),
+    0 0 18px rgba(255, 255, 255, 0.08);
   pointer-events: none;
 }
 
@@ -773,15 +946,44 @@ a.group:hover .navbar-logo-icon {
 /* Botão flutuante WhatsApp */
 .whatsapp-fab {
   isolation: isolate;
+  overflow: visible;
+  animation: whatsapp-fab-glow 2.2s ease-in-out infinite;
+}
+
+@keyframes whatsapp-fab-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 14px rgba(37, 211, 102, 0.38),
+      0 0 22px rgba(217, 119, 6, 0.32),
+      0 4px 24px rgba(251, 191, 36, 0.22);
+  }
+  50% {
+    box-shadow:
+      0 0 22px rgba(37, 211, 102, 0.5),
+      0 0 40px rgba(217, 119, 6, 0.58),
+      0 0 52px rgba(251, 191, 36, 0.38);
+  }
+}
+
+.whatsapp-fab:hover {
+  animation: none;
+  box-shadow:
+    0 0 24px rgba(37, 211, 102, 0.52),
+    0 0 44px rgba(217, 119, 6, 0.62),
+    0 0 56px rgba(251, 191, 36, 0.42);
 }
 
 .whatsapp-fab-pulse {
   position: absolute;
   inset: 0;
   border-radius: 9999px;
-  background: rgba(37, 211, 102, 0.35);
-  animation: whatsapp-pulse 2.4s ease-out infinite;
+  background: radial-gradient(circle, rgba(251, 191, 36, 0.55) 0%, rgba(217, 119, 6, 0.35) 45%, transparent 70%);
+  animation: whatsapp-pulse 2.2s ease-out infinite;
   pointer-events: none;
+}
+
+.whatsapp-fab-pulse--delay {
+  animation-delay: 1.1s;
 }
 
 .whatsapp-fab-ring {
@@ -793,13 +995,32 @@ a.group:hover .navbar-logo-icon {
     0 0 12px rgba(217, 119, 6, 0.35),
     inset 0 0 12px rgba(217, 119, 6, 0.08);
   pointer-events: none;
+  animation: whatsapp-gold-ring 2.2s ease-in-out infinite;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+@keyframes whatsapp-gold-ring {
+  0%, 100% {
+    border-color: rgba(217, 119, 6, 0.55);
+    box-shadow:
+      0 0 10px rgba(217, 119, 6, 0.35),
+      0 0 22px rgba(251, 191, 36, 0.22),
+      inset 0 0 10px rgba(217, 119, 6, 0.06);
+  }
+  50% {
+    border-color: rgba(251, 191, 36, 0.95);
+    box-shadow:
+      0 0 20px rgba(217, 119, 6, 0.62),
+      0 0 38px rgba(251, 191, 36, 0.52),
+      inset 0 0 14px rgba(217, 119, 6, 0.12);
+  }
+}
+
 .whatsapp-fab:hover .whatsapp-fab-ring {
-  border-color: rgba(217, 119, 6, 0.85);
+  border-color: rgba(251, 191, 36, 0.95);
   box-shadow:
-    0 0 20px rgba(217, 119, 6, 0.55),
+    0 0 24px rgba(217, 119, 6, 0.62),
+    0 0 36px rgba(251, 191, 36, 0.45),
     inset 0 0 16px rgba(217, 119, 6, 0.12);
 }
 
@@ -810,22 +1031,42 @@ a.group:hover .navbar-logo-icon {
 @keyframes whatsapp-pulse {
   0% {
     transform: scale(1);
-    opacity: 0.55;
+    opacity: 0.65;
   }
   70% {
-    transform: scale(1.45);
+    transform: scale(1.75);
     opacity: 0;
   }
   100% {
-    transform: scale(1.45);
+    transform: scale(1.75);
     opacity: 0;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .whatsapp-fab-pulse {
+  .wpp-gold-pulse {
     animation: none;
-    opacity: 0.25;
+  }
+
+  .wpp-gold-pulse::before {
+    animation: none;
+    box-shadow: 0 0 0 6px rgba(251, 191, 36, 0.2);
+  }
+
+  .whatsapp-fab {
+    animation: none;
+    box-shadow:
+      0 0 18px rgba(37, 211, 102, 0.38),
+      0 0 28px rgba(217, 119, 6, 0.35);
+  }
+
+  .whatsapp-fab-pulse,
+  .whatsapp-fab-ring {
+    animation: none;
+  }
+
+  .whatsapp-fab-pulse {
+    opacity: 0.3;
   }
 }
 

@@ -37,3 +37,9 @@ export const siteContact = {
     facebook: "https://facebook.com/academiaimperial",
   },
 } as const;
+
+export function getWhatsAppHref() {
+  const { number, message } = siteContact.whatsapp;
+  const params = new URLSearchParams({ text: message });
+  return `https://wa.me/${number}?${params.toString()}`;
+}

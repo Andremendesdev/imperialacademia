@@ -94,10 +94,10 @@ export function Benefits() {
       <div className="grain-overlay pointer-events-none absolute inset-0 z-0 opacity-20" aria-hidden />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="mb-6 max-w-2xl sm:mb-8 lg:mb-10">
+        <div className="mb-4 max-w-2xl sm:mb-6 lg:mb-8">
           <Badge
             variant="neon"
-            className={`mb-3 w-fit gap-1.5 px-2.5 py-1 text-[8px] font-semibold tracking-[0.18em] uppercase sm:mb-4 sm:text-[9px] ${
+            className={`badge-section w-fit ${
               visible ? "animate-slide-up" : "opacity-0"
             }`}
           >
@@ -114,10 +114,10 @@ export function Benefits() {
               visible ? "animate-slide-up delay-100" : "opacity-0"
             }`}
           >
-            <span className="block font-display text-[clamp(1.75rem,5vw,3.25rem)] leading-[0.9] tracking-[0.02em] text-[var(--white-neon)]">
+            <span className="section-title-top">
               MAIS QUE UMA ACADEMIA.
             </span>
-            <span className="block font-display text-[clamp(1.75rem,5vw,3.25rem)] leading-[0.9] tracking-[0.02em] text-amber-500 text-glow-gold">
+            <span className="section-title-bottom">
               UM NOVO ESTILO DE VIDA.
             </span>
           </h2>
