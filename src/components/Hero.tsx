@@ -51,26 +51,29 @@ export function Hero() {
         aria-hidden
       />
 
+      {/* ── Grid futurístico suave ── */}
+      <div className="hero-grid-future" aria-hidden />
+
       {/* ── Overlay dourado ── */}
       <div
         className="pointer-events-none absolute inset-0 min-h-dvh"
         aria-hidden
       >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_65%_55%_at_18%_28%,rgba(217,119,6,0.14)_0%,transparent_58%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_45%_at_85%_70%,rgba(251,191,36,0.06)_0%,transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_65%_55%_at_18%_28%,rgba(217,119,6,0.08)_0%,transparent_58%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_45%_at_85%_70%,rgba(251,191,36,0.03)_0%,transparent_50%)]" />
       </div>
 
       {/* ── Atmospheric layers ── */}
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_4%_6%,rgba(8,10,35,0.38)_0%,transparent_65%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_4%_6%,rgba(8,10,35,0.38)_0%,transparent_65%)] max-lg:bg-[radial-gradient(ellipse_55%_50%_at_4%_6%,rgba(8,10,35,0.28)_0%,transparent_65%)]"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_85%_at_50%_45%,transparent_32%,rgba(0,0,0,0.82)_100%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_85%_at_50%_45%,transparent_32%,rgba(0,0,0,0.76)_100%)] max-lg:bg-[radial-gradient(ellipse_85%_85%_at_50%_45%,transparent_38%,rgba(0,0,0,0.68)_100%)]"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--bg-deep)]/90 to-transparent sm:h-56 sm:from-[var(--bg-deep)]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--bg-deep)]/75 to-transparent sm:h-56 sm:from-[var(--bg-deep)]"
         aria-hidden
       />
       <div className="grain-overlay z-0 opacity-22" aria-hidden />
@@ -91,7 +94,7 @@ export function Hero() {
             <div className="flex flex-col gap-5 sm:gap-5 lg:gap-6">
               <Badge
                 variant="neon"
-                className="badge-section animate-slide-up w-fit"
+                className="badge-section hero-badge-soft animate-slide-up w-fit !shadow-[0_0_6px_rgba(251,191,36,0.06)]"
               >
                 <span
                   className="neon-dot glow-pulse h-1 w-1 rounded-full"
@@ -106,15 +109,15 @@ export function Hero() {
               <div className="flex flex-col gap-0.5 sm:gap-1">
                 <h1
                   id="hero-heading"
-                  className="animate-slide-up delay-100 flex flex-col gap-1 leading-none sm:gap-1.5"
+                  className="animate-slide-in-left delay-100 flex flex-col gap-2 leading-none sm:gap-2.5"
                 >
-                  <span className="hero-title-welcome flex items-center gap-2 font-sans text-[clamp(0.7rem,2.2vw,0.9rem)] font-semibold uppercase tracking-[0.35em] text-amber-400/90">
+                  <span className="hero-title-welcome flex items-center gap-2 font-sans text-[clamp(0.75rem,2.4vw,1rem)] font-semibold uppercase tracking-[0.35em] text-amber-400/75">
                     <span className="hero-eyebrow-line hidden sm:inline-block" aria-hidden />
                     Bem-vindo à
                     <span className="hero-eyebrow-line hidden sm:inline-block" aria-hidden />
                   </span>
 
-                  <span className="relative inline-flex flex-col">
+                  <span className="relative inline-flex flex-col gap-1.5 sm:gap-2">
                     <span
                       className="hero-title-glow-bg pointer-events-none absolute inset-x-0 bottom-[-8%] top-[-6%]"
                       aria-hidden
@@ -129,7 +132,7 @@ export function Hero() {
                 </h1>
 
                 <div
-                  className="animate-slide-up delay-200 flex items-center gap-3"
+                  className="animate-fade-in delay-300 flex items-center gap-3"
                   aria-hidden
                 >
                   <div className="neon-gold-line h-px w-10" />
@@ -138,11 +141,12 @@ export function Hero() {
                 </div>
               </div>
 
-              <p className="hero-lead animate-slide-up delay-300 max-w-[27rem] text-base font-light leading-[1.75] text-zinc-300 sm:text-[1.05rem]">
+              <p className="hero-lead animate-slide-up delay-400 max-w-[27rem] text-base font-light leading-[1.75] text-zinc-300 sm:text-[1.05rem]">
                 Treinos personalizados, equipamentos modernos e resultados reais.
               </p>
 
-              <div className="animate-slide-up delay-400 flex w-full flex-col items-stretch gap-3 sm:mx-0 sm:max-w-none sm:flex-row sm:flex-wrap sm:gap-4">
+              <div className="flex w-full flex-col items-stretch gap-3 sm:mx-0 sm:max-w-none sm:flex-row sm:flex-wrap sm:gap-4">
+                <div className="animate-hero-btn-in delay-600 w-full sm:w-auto">
                 <Button
                   asChild
                   size="lg"
@@ -162,6 +166,8 @@ export function Hero() {
                     />
                   </a>
                 </Button>
+                </div>
+                <div className="animate-hero-btn-in delay-700 w-full sm:w-auto">
                 <Button
                   variant="outline"
                   size="lg"
@@ -172,10 +178,11 @@ export function Hero() {
                     Ver fotos da Academia
                   </Link>
                 </Button>
+                </div>
               </div>
 
               <div
-                className="hero-trust-scroll animate-slide-up delay-500 -mx-2 flex w-[calc(100%+1rem)] gap-2.5 overflow-x-auto px-2 pb-1 sm:mx-auto sm:grid sm:w-full sm:max-w-xl sm:grid-cols-3 sm:gap-3 sm:overflow-visible sm:px-0"
+                className="hero-trust-scroll animate-slide-up delay-900 -mx-2 flex w-[calc(100%+1rem)] gap-2.5 overflow-x-auto px-2 pb-1 sm:mx-auto sm:grid sm:w-full sm:max-w-xl sm:grid-cols-3 sm:gap-3 sm:overflow-visible sm:px-0"
                 role="list"
                 aria-label="Diferenciais da academia"
               >
@@ -195,7 +202,7 @@ export function Hero() {
               </div>
 
               <div
-                className="animate-slide-up delay-600 mx-auto hidden w-full max-w-xl grid-cols-3 divide-x divide-zinc-800/60 border-t border-amber-900/25 pt-6 text-center shadow-[0_-1px_20px_rgba(217,119,6,0.08)] sm:grid lg:border-0 lg:pt-1 lg:shadow-none"
+                className="animate-slide-up delay-1000 mx-auto hidden w-full max-w-xl grid-cols-3 divide-x divide-zinc-800/60 border-t border-amber-900/15 pt-6 text-center shadow-[0_-1px_12px_rgba(217,119,6,0.04)] sm:grid lg:border-0 lg:pt-1 lg:shadow-none"
                 role="list"
                 aria-label="Indicadores da academia"
               >
@@ -210,7 +217,7 @@ export function Hero() {
                       {icon && (
                         <Star
                           size={14}
-                          className="fill-amber-400 text-amber-400 drop-shadow-[0_0_4px_rgba(251,191,36,0.45)]"
+                          className="fill-amber-400/90 text-amber-400/90 drop-shadow-[0_0_2px_rgba(251,191,36,0.2)]"
                           aria-label="estrelas"
                         />
                       )}
@@ -227,7 +234,7 @@ export function Hero() {
 
         <a
           href="#estrutura"
-          className="group/explore animate-fade-in delay-800 mt-2 hidden flex-col items-center gap-0.5 self-center text-zinc-600 transition-colors hover:text-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600/50 rounded-lg px-1 sm:flex lg:absolute lg:bottom-10 lg:left-1/2 lg:mt-0 lg:-translate-x-1/2 lg:gap-1.5 lg:px-2"
+          className="group/explore animate-fade-in delay-1100 mt-2 hidden flex-col items-center gap-0.5 self-center text-zinc-600 transition-colors hover:text-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600/50 rounded-lg px-1 sm:flex lg:absolute lg:bottom-10 lg:left-1/2 lg:mt-0 lg:-translate-x-1/2 lg:gap-1.5 lg:px-2"
           aria-label="Rolar para conhecer a estrutura"
         >
           <span className="text-[8px] font-semibold tracking-[0.22em] uppercase sm:text-[9px] lg:text-[11px] lg:tracking-[0.26em]">

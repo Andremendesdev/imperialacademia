@@ -20,18 +20,18 @@ export function FloatingWhatsApp() {
       href={getWhatsAppHref()}
       target="_blank"
       rel="noopener noreferrer"
-      className="whatsapp-fab group fixed right-4 bottom-4 z-40 flex h-12 w-12 items-center justify-center overflow-visible rounded-full border border-amber-600/55 bg-[#25D366] text-white transition-[transform,border-color] duration-300 hover:scale-[1.04] hover:border-amber-500/90 active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:scale-100 sm:right-6 sm:bottom-6 sm:h-auto sm:w-auto sm:gap-0"
+      className="whatsapp-fab animate-whatsapp-fab-enter delay-3000 group fixed right-4 bottom-4 z-40 flex h-12 items-center justify-center overflow-visible rounded-full transition-transform duration-300 hover:scale-[1.04] active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:scale-100 sm:right-6 sm:bottom-6 sm:h-14 sm:w-auto sm:gap-0"
       aria-label={`Conversar no WhatsApp com a ${siteContact.name}`}
     >
-      <span className="whatsapp-fab-pulse" aria-hidden />
-      <span className="whatsapp-fab-pulse whatsapp-fab-pulse--delay" aria-hidden />
-      <span className="whatsapp-fab-ring" aria-hidden />
-
-      <span className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center sm:h-14 sm:w-14 [&_svg]:h-[22px] [&_svg]:w-[22px] sm:[&_svg]:h-[26px] sm:[&_svg]:w-[26px]">
-        <WhatsAppIcon />
+      <span className="relative flex h-12 w-12 shrink-0 items-center justify-center sm:h-14 sm:w-14">
+        <span className="whatsapp-fab-pulse" aria-hidden />
+        <span className="whatsapp-fab-pulse whatsapp-fab-pulse--delay" aria-hidden />
+        <span className="relative z-10 flex h-full w-full items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_4px_16px_rgba(0,0,0,0.28)] ring-2 ring-[#25D366] [&_svg]:h-[22px] [&_svg]:w-[22px] sm:[&_svg]:h-[26px] sm:[&_svg]:w-[26px]">
+          <WhatsAppIcon />
+        </span>
       </span>
 
-      <span className="whatsapp-fab-label relative z-10 max-w-0 overflow-hidden whitespace-nowrap pr-0 text-sm font-semibold tracking-wide opacity-0 transition-[max-width,opacity,padding] duration-300 group-hover:max-w-[11rem] group-hover:pr-5 group-hover:opacity-100 motion-reduce:transition-none">
+      <span className="whatsapp-fab-label relative z-10 max-w-0 overflow-hidden whitespace-nowrap rounded-r-full bg-[#25D366] pr-0 text-sm font-semibold tracking-wide text-white opacity-0 transition-[max-width,opacity,padding] duration-300 group-hover:max-w-[11rem] group-hover:pr-5 group-hover:opacity-100 motion-reduce:transition-none">
         Fale conosco
       </span>
     </a>
