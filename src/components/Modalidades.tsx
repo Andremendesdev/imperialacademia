@@ -134,15 +134,12 @@ export function Modalidades() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
         <div className="mb-6 max-w-2xl sm:mb-8 lg:mb-10">
           <Badge
-            variant="neon"
+            variant="section"
             className={`badge-section w-fit ${
               visible ? "animate-slide-up" : "opacity-0"
             }`}
           >
-            <span
-              className="neon-dot glow-pulse h-1 w-1 rounded-full"
-              aria-hidden
-            />
+            <span className="badge-section-dot" aria-hidden />
             Modalidades
           </Badge>
 

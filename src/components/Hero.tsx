@@ -22,7 +22,7 @@ const stats = [
 const trustBadges = [
   { icon: Dumbbell, text: "+200 Equipamentos", short: "+200 equip." },
   { icon: Shield, text: "Equipamentos premium", short: "Premium" },
-  { icon: Zap, text: "Acomp. profissional", short: "Acompanhamento" },
+  { icon: Zap, text: "Acomp. profissional", short: "Acomp." },
 ];
 
 export function Hero() {
@@ -30,7 +30,7 @@ export function Hero() {
     <section
       id="inicio"
       aria-labelledby="hero-heading"
-      className="relative min-h-dvh overflow-hidden bg-[var(--bg-deep)]"
+      className="relative min-h-dvh overflow-x-hidden bg-[var(--bg-deep)]"
     >
       {/* ── fundo mobile / desktop ── */}
       <div
@@ -65,15 +65,15 @@ export function Hero() {
 
       {/* ── Atmospheric layers ── */}
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_4%_6%,rgba(8,10,35,0.38)_0%,transparent_65%)] max-lg:bg-[radial-gradient(ellipse_55%_50%_at_4%_6%,rgba(8,10,35,0.28)_0%,transparent_65%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_55%_50%_at_4%_6%,rgba(8,10,35,0.42)_0%,transparent_65%)] max-lg:bg-[radial-gradient(ellipse_55%_50%_at_4%_6%,rgba(8,10,35,0.32)_0%,transparent_65%)]"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_85%_at_50%_45%,transparent_32%,rgba(0,0,0,0.76)_100%)] max-lg:bg-[radial-gradient(ellipse_85%_85%_at_50%_45%,transparent_38%,rgba(0,0,0,0.68)_100%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_85%_85%_at_50%_45%,transparent_32%,rgba(0,0,0,0.80)_100%)] max-lg:bg-[radial-gradient(ellipse_85%_85%_at_50%_45%,transparent_38%,rgba(0,0,0,0.72)_100%)]"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[var(--bg-deep)]/75 to-transparent sm:h-56 sm:from-[var(--bg-deep)]"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[var(--bg-deep)]/75 to-transparent sm:h-56 sm:from-[var(--bg-deep)]"
         aria-hidden
       />
       <div className="grain-overlay z-0 opacity-22" aria-hidden />
@@ -88,16 +88,16 @@ export function Hero() {
         aria-hidden
       />
       {/* ── Content ── */}
-      <div className="relative z-10 flex min-h-dvh w-full flex-col pt-[70px] pb-6 sm:pb-6 md:items-start lg:pt-[calc(70px+4.5rem)] lg:pb-8">
-        <div className="mx-auto w-full max-w-7xl px-6 pt-14 pb-28 sm:py-12 sm:pb-10 lg:px-12 lg:pb-10 lg:pt-6">
-          <div className="max-w-3xl">
-            <div className="flex flex-col gap-5 sm:gap-5 lg:gap-6">
+      <div className="relative z-10 flex min-h-dvh w-full flex-col pt-[70px] pb-6 sm:pb-6 md:items-start lg:pt-[calc(70px+2.5rem)] lg:pb-8">
+        <div className="mx-auto w-full max-w-7xl px-6 pt-14 pb-36 sm:py-12 sm:pb-10 lg:px-12 lg:pb-10 lg:pt-0">
+          <div className="flex flex-col gap-5 max-sm:gap-6 lg:grid lg:grid-cols-[minmax(0,48rem)_auto] lg:grid-rows-[auto_auto] lg:items-start lg:gap-x-10 lg:gap-y-5">
+            <div className="flex max-w-3xl flex-col gap-5 sm:gap-5 lg:col-start-1 lg:row-start-1 lg:gap-6">
               <Badge
                 variant="neon"
-                className="badge-section hero-badge-soft animate-slide-up w-fit !shadow-[0_0_6px_rgba(251,191,36,0.06)]"
+                className="badge-section hero-badge-soft animate-slide-up w-fit self-center sm:self-start !shadow-[0_0_6px_rgba(251,191,36,0.06)]"
               >
                 <span
-                  className="neon-dot glow-pulse h-1 w-1 rounded-full"
+                  className="neon-dot glow-pulse rounded-full"
                   aria-hidden
                 />
                 <span className="sm:hidden">Melhor academia de Piraju</span>
@@ -106,18 +106,18 @@ export function Hero() {
                 </span>
               </Badge>
 
-              <div className="flex flex-col gap-0.5 sm:gap-1">
+              <div className="flex flex-col gap-0.5 max-sm:items-center sm:gap-1">
                 <h1
                   id="hero-heading"
-                  className="animate-slide-in-left delay-100 flex flex-col gap-2 leading-none sm:gap-2.5"
+                  className="animate-slide-in-left delay-100 flex flex-col gap-2 leading-none max-sm:items-center max-sm:text-center sm:gap-2.5"
                 >
-                  <span className="hero-title-welcome flex items-center gap-2 font-sans text-[clamp(0.75rem,2.4vw,1rem)] font-semibold uppercase tracking-[0.35em] text-amber-400/75">
+                  <span className="hero-title-welcome flex items-center justify-center gap-2 font-sans text-[clamp(0.75rem,2.4vw,1rem)] font-semibold uppercase tracking-[0.35em] text-amber-400/75 sm:justify-start">
                     <span className="hero-eyebrow-line hidden sm:inline-block" aria-hidden />
                     Bem-vindo à
                     <span className="hero-eyebrow-line hidden sm:inline-block" aria-hidden />
                   </span>
 
-                  <span className="relative inline-flex flex-col gap-1.5 sm:gap-2">
+                  <span className="relative inline-flex flex-col items-center gap-1.5 sm:items-start sm:gap-2">
                     <span
                       className="hero-title-glow-bg pointer-events-none absolute inset-x-0 bottom-[-8%] top-[-6%]"
                       aria-hidden
@@ -132,7 +132,7 @@ export function Hero() {
                 </h1>
 
                 <div
-                  className="animate-fade-in delay-300 flex items-center gap-3"
+                  className="animate-fade-in delay-300 flex items-center justify-center gap-3 sm:justify-start"
                   aria-hidden
                 >
                   <div className="neon-gold-line h-px w-10" />
@@ -144,13 +144,14 @@ export function Hero() {
               <p className="hero-lead animate-slide-up delay-400 max-w-[27rem] text-base font-light leading-[1.75] text-zinc-300 sm:text-[1.05rem]">
                 Treinos personalizados, equipamentos modernos e resultados reais.
               </p>
+            </div>
 
-              <div className="flex w-full flex-col items-stretch gap-3 sm:mx-0 sm:max-w-none sm:flex-row sm:flex-wrap sm:gap-4">
-                <div className="animate-hero-btn-in delay-600 w-full sm:w-auto">
+            <div className="flex w-full flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:gap-4 md:justify-end lg:col-start-2 lg:row-start-2 lg:w-auto lg:items-end lg:justify-end lg:self-end">
+              <div className="animate-hero-btn-in delay-600 w-full sm:w-auto">
                 <Button
                   asChild
                   size="lg"
-                  className="hero-btn hero-btn-primary wpp-gold-pulse group w-full rounded-full sm:w-auto"
+                  className="hero-btn hero-btn-primary wpp-gold-pulse group w-full rounded-lg font-bold sm:w-auto"
                 >
                   <a
                     href={getWhatsAppHref()}
@@ -158,7 +159,7 @@ export function Hero() {
                     rel="noopener noreferrer"
                     className="w-full justify-center"
                   >
-                    Falar no WhatsApp
+                    Começar Agora
                     <ArrowRight
                       size={16}
                       className="transition-transform duration-300 group-hover:translate-x-0.5"
@@ -166,31 +167,31 @@ export function Hero() {
                     />
                   </a>
                 </Button>
-                </div>
-                <div className="animate-hero-btn-in delay-700 w-full sm:w-auto">
+              </div>
+              <div className="animate-hero-btn-in delay-700 w-full sm:w-auto">
                 <Button
                   variant="outline"
                   size="lg"
                   asChild
-                  className="hero-btn hero-btn-secondary hero-btn-secondary--compact w-full rounded-full font-normal sm:w-auto"
+                  className="hero-btn hero-btn-secondary hero-btn-secondary--compact w-full rounded-lg !bg-transparent font-bold !shadow-none backdrop-blur-none hover:!bg-transparent hover:!shadow-none sm:w-auto"
                 >
                   <Link href="#estrutura" className="w-full justify-center">
                     Ver fotos da Academia
                   </Link>
                 </Button>
-                </div>
               </div>
+            </div>
 
+            <div className="flex max-w-3xl flex-col gap-5 max-sm:-mt-3 max-sm:gap-4 sm:gap-5 lg:col-start-1 lg:row-start-2 lg:mt-0 lg:gap-6">
               <div
-                className="hero-trust-scroll animate-slide-up delay-900 -mx-2 flex w-[calc(100%+1rem)] gap-2.5 overflow-x-auto px-2 pb-1 sm:mx-auto sm:grid sm:w-full sm:max-w-xl sm:grid-cols-3 sm:gap-3 sm:overflow-visible sm:px-0"
+                className="hero-trust-scroll animate-slide-up delay-900 mx-auto grid w-full max-w-xl grid-cols-3 gap-1.5 sm:gap-3 lg:mx-0 lg:justify-start"
                 role="list"
                 aria-label="Diferenciais da academia"
               >
                 {trustBadges.map(({ icon: Icon, text, short }) => (
                   <div key={text} role="listitem" className="hero-trust-card">
                     <Icon
-                      size={14}
-                      className="neon-icon-gold shrink-0"
+                      className="neon-icon-gold size-3 shrink-0 sm:size-3.5"
                       aria-hidden
                     />
                     <span className="whitespace-normal sm:hidden">{short}</span>
@@ -202,7 +203,7 @@ export function Hero() {
               </div>
 
               <div
-                className="animate-slide-up delay-1000 mx-auto hidden w-full max-w-xl grid-cols-3 divide-x divide-zinc-800/60 border-t border-amber-900/15 pt-6 text-center shadow-[0_-1px_12px_rgba(217,119,6,0.04)] sm:grid lg:border-0 lg:pt-1 lg:shadow-none"
+                className="animate-slide-up delay-1000 mx-auto grid w-full max-w-xl grid-cols-3 divide-x divide-zinc-800/60 border-t border-amber-900/15 pt-4 text-center shadow-[0_-1px_12px_rgba(217,119,6,0.04)] sm:pt-6 lg:mx-0 lg:justify-start lg:border-0 lg:pt-1 lg:shadow-none"
                 role="list"
                 aria-label="Indicadores da academia"
               >

@@ -156,15 +156,12 @@ export function Location() {
         {/* Header */}
         <div className="mb-6 max-w-2xl lg:mb-8">
           <Badge
-            variant="neon"
+            variant="section"
             className={`badge-section w-fit ${
               visible ? "animate-slide-up" : "opacity-0"
             }`}
           >
-            <span
-              className="neon-dot glow-pulse h-1 w-1 rounded-full"
-              aria-hidden
-            />
+            <span className="badge-section-dot" aria-hidden />
             Estrutura
           </Badge>
 

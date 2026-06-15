@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { getWhatsAppHref, siteContact } from "@/lib/site-contact";
 
 function WhatsAppIcon({ size = 26 }: { size?: number }) {
@@ -15,12 +18,32 @@ function WhatsAppIcon({ size = 26 }: { size?: number }) {
 }
 
 export function FloatingWhatsApp() {
+  const [pastHero, setPastHero] = useState(false);
+
+  useEffect(() => {
+    const hero = document.getElementById("inicio");
+    if (!hero) {
+      setPastHero(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setPastHero(!entry.isIntersecting),
+      { threshold: 0 }
+    );
+
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, []);
+
+  if (!pastHero) return null;
+
   return (
     <a
       href={getWhatsAppHref()}
       target="_blank"
       rel="noopener noreferrer"
-      className="whatsapp-fab animate-whatsapp-fab-enter delay-3000 group fixed right-4 bottom-4 z-40 flex h-12 items-center justify-center overflow-visible rounded-full transition-transform duration-300 hover:scale-[1.04] active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:scale-100 sm:right-6 sm:bottom-6 sm:h-14 sm:w-auto sm:gap-0"
+      className="whatsapp-fab animate-whatsapp-fab-enter group fixed right-4 bottom-4 z-40 flex h-12 items-center justify-center overflow-visible rounded-full transition-transform duration-300 hover:scale-[1.04] active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:scale-100 sm:right-6 sm:bottom-6 sm:h-14 sm:w-auto sm:gap-0"
       aria-label={`Conversar no WhatsApp com a ${siteContact.name}`}
     >
       <span className="relative flex h-12 w-12 shrink-0 items-center justify-center sm:h-14 sm:w-14">

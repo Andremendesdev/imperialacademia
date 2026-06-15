@@ -27,27 +27,27 @@ export function Navbar() {
   return (
     <>
       <header
-        className={`navbar-neon-border fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-out ${
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-out ${
           scrolled ? "navbar-glass" : "navbar-glass-top"
         }`}
       >
         <div className="mx-auto flex h-[70px] max-w-7xl items-center justify-between px-6 lg:px-12">
           {/* ── Logo ── */}
-          <a href="#inicio" className="group flex items-center gap-1">
+          <a href="#inicio" className="group flex items-center gap-1.5">
             <Image
               src="/icon.png"
               alt="Academia Imperial"
               width={1432}
               height={901}
               unoptimized
-              className="navbar-logo-icon h-8 w-auto max-h-9 shrink-0 sm:h-9 sm:max-h-10"
+              className="navbar-logo-icon h-11 w-auto max-h-12 shrink-0 sm:h-12 sm:max-h-14"
               priority
             />
             <div className="flex flex-col leading-none">
-              <span className="text-[8px] font-semibold tracking-[0.2em] text-zinc-400 uppercase">
+              <span className="text-[9px] font-semibold tracking-[0.2em] text-zinc-400 uppercase sm:text-[10px]">
                 Academia
               </span>
-              <span className="font-display text-base tracking-[0.06em] text-white sm:text-lg">
+              <span className="font-display text-lg tracking-[0.06em] text-white sm:text-xl">
                 IMPERIAL
               </span>
             </div>
@@ -59,10 +59,9 @@ export function Navbar() {
               <a
                 key={label}
                 href={href}
-                className="relative px-4 py-2 text-[13px] font-medium tracking-wide text-zinc-400 transition-colors duration-200 hover:text-white group"
+                className="px-4 py-2 text-[13px] font-medium tracking-wide text-zinc-400 transition-colors duration-200 hover:text-white"
               >
                 {label}
-                <span className="neon-gold-line absolute inset-x-4 bottom-1.5 h-px scale-x-0 transition-transform duration-200 group-hover:scale-x-100 origin-left" />
               </a>
             ))}
           </nav>
@@ -73,7 +72,7 @@ export function Navbar() {
               href={getWhatsAppHref()}
               target="_blank"
               rel="noopener noreferrer"
-              className="wpp-gold-pulse neon-gold-soft btn-shimmer relative hidden overflow-visible rounded-lg bg-amber-600 px-5 py-2.5 text-[13px] font-semibold tracking-wide text-white transition-all duration-300 hover:bg-amber-500 md:inline-flex"
+              className="wpp-gold-pulse btn-shimmer relative hidden overflow-visible rounded-lg bg-amber-600 px-5 py-2.5 text-[13px] font-semibold tracking-wide text-white transition-all duration-300 hover:bg-amber-500 md:inline-flex"
             >
               Falar no WhatsApp
             </a>
@@ -81,12 +80,12 @@ export function Navbar() {
             <button
               onClick={() => setMobileOpen((o) => !o)}
               aria-label="Menu"
-              className="navbar-menu-btn flex h-10 w-10 items-center justify-center rounded-lg border border-amber-600/25 bg-white/5 transition-colors hover:border-amber-600/40 md:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-zinc-400 transition-colors hover:border-white/20 hover:text-white md:hidden"
             >
               {mobileOpen ? (
-                <X size={18} className="navbar-menu-icon" />
+                <X size={18} />
               ) : (
-                <Menu size={18} className="navbar-menu-icon" />
+                <Menu size={18} />
               )}
             </button>
           </div>

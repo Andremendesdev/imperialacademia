@@ -127,8 +127,8 @@ function PricingCard({
       {plan.popular && (
         <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
           <Badge
-            variant="neon"
-            className="px-3 py-1 text-[9px] font-bold tracking-[0.18em] uppercase shadow-[0_0_14px_rgba(217,119,6,0.4)]"
+            variant="section"
+            className="border-amber-800/35 bg-amber-950/30 px-3 py-1 text-[9px] font-bold tracking-[0.18em] text-amber-400/90 uppercase"
           >
             Mais popular
           </Badge>
@@ -232,14 +232,8 @@ export function Pricing() {
         <div
           className={`mb-8 max-w-2xl lg:mb-10 ${visible ? "animate-slide-up" : "opacity-0"}`}
         >
-          <Badge
-            variant="neon"
-            className="badge-section w-fit"
-          >
-            <span
-              className="neon-dot glow-pulse h-1 w-1 rounded-full"
-              aria-hidden
-            />
+          <Badge variant="section" className="badge-section w-fit">
+            <span className="badge-section-dot" aria-hidden />
             Planos
           </Badge>
 
