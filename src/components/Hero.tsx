@@ -51,9 +51,6 @@ export function Hero() {
         aria-hidden
       />
 
-      {/* ── Grid futurístico suave ── */}
-      <div className="hero-grid-future" aria-hidden />
-
       {/* ── Overlay dourado ── */}
       <div
         className="pointer-events-none absolute inset-0 min-h-dvh"

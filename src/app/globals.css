@@ -319,54 +319,6 @@
   }
 }
 
-/* Hero — grid futurístico dourado suave (hero inteira) */
-.hero-grid-future {
-  position: absolute;
-  inset: 0;
-  min-height: 100dvh;
-  width: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 1;
-  background-image:
-    linear-gradient(rgba(251, 191, 36, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(251, 191, 36, 0.045) 1px, transparent 1px),
-    linear-gradient(rgba(252, 211, 77, 0.022) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(252, 211, 77, 0.022) 1px, transparent 1px);
-  background-size: 56px 56px, 56px 56px, 14px 14px, 14px 14px;
-}
-
-.hero-grid-future::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    repeating-linear-gradient(
-      -32deg,
-      transparent,
-      transparent 55px,
-      rgba(251, 191, 36, 0.018) 55px,
-      rgba(251, 191, 36, 0.018) 56px
-    ),
-    repeating-linear-gradient(
-      32deg,
-      transparent,
-      transparent 55px,
-      rgba(251, 191, 36, 0.018) 55px,
-      rgba(251, 191, 36, 0.018) 56px
-    );
-}
-
-.hero-grid-future::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at center, rgba(251, 191, 36, 0.14) 1px, transparent 1px);
-  background-size: 56px 56px;
-  opacity: 0.35;
-}
-
 /* Cinematic full-bleed background — desktop */
 .cinematic-bg-image {
   object-fit: cover;
