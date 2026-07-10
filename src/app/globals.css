@@ -170,7 +170,25 @@
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  filter: saturate(0.72) contrast(1.03) brightness(0.72);
+  filter: saturate(0.8) contrast(1.02) brightness(0.9);
+}
+
+/* Hero — zoom cinematográfico lento na entrada */
+@keyframes hero-bg-zoom {
+  from { transform: scale(1.08); }
+  to   { transform: scale(1); }
+}
+
+.hero-bg-media {
+  animation: hero-bg-zoom 2.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg-media {
+    animation: none;
+    transform: none;
+  }
 }
 
 /* Hero — Academia e Imperial */
@@ -180,14 +198,14 @@
 
 .hero-title-line {
   font-family: var(--font-bebas), sans-serif;
-  font-size: clamp(2.75rem, 12vw, 6.25rem);
+  font-size: clamp(2.75rem, 12vw, 6.75rem);
   line-height: 0.88;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .hero-title-line.hero-title-imperial-accent {
-  font-size: clamp(3.15rem, 13.5vw, 7rem);
+  font-size: clamp(3.15rem, 13.5vw, 7.75rem);
 }
 
 @media (max-width: 639px) {
@@ -238,18 +256,19 @@
   text-wrap: pretty;
   color: #e4e4e7;
   text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.95),
-    0 2px 12px rgba(0, 0, 0, 0.85),
-    0 4px 24px rgba(0, 0, 0, 0.65);
+    0 1px 3px rgba(0, 0, 0, 0.98),
+    0 2px 14px rgba(0, 0, 0, 0.9),
+    0 4px 28px rgba(0, 0, 0, 0.75),
+    0 8px 40px rgba(0, 0, 0, 0.45);
 }
 
 /* Hero — véu escuro sobre a foto (legibilidade do texto) */
 .hero-bg-scrim {
   background: linear-gradient(
     180deg,
-    rgba(6, 6, 8, 0.46) 0%,
-    rgba(6, 6, 8, 0.42) 40%,
-    rgba(6, 6, 8, 0.52) 100%
+    rgba(6, 6, 8, 0.3) 0%,
+    rgba(6, 6, 8, 0.26) 40%,
+    rgba(6, 6, 8, 0.36) 100%
   );
 }
 
@@ -260,10 +279,116 @@
   background:
     radial-gradient(
       ellipse 120% 80% at var(--hero-scrim-x) var(--hero-scrim-y),
-      rgba(6, 6, 8, 0.52) 0%,
-      rgba(6, 6, 8, 0.22) 55%,
+      rgba(6, 6, 8, 0.38) 0%,
+      rgba(6, 6, 8, 0.14) 55%,
       transparent 100%
     );
+}
+
+/* Hero — gradiente lateral: ancora o conteúdo à esquerda no desktop */
+.hero-side-scrim {
+  background: linear-gradient(
+    100deg,
+    rgba(6, 6, 8, 0.62) 0%,
+    rgba(6, 6, 8, 0.36) 30%,
+    rgba(6, 6, 8, 0.07) 58%,
+    transparent 75%
+  );
+}
+
+/* Hero — luz dourada ambiente, quente e sutil (vinda de baixo/esquerda) */
+.hero-gold-light {
+  background:
+    radial-gradient(
+      ellipse 55% 42% at 18% 88%,
+      rgba(217, 119, 6, 0.16) 0%,
+      rgba(217, 119, 6, 0.05) 45%,
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 40% 30% at 85% 10%,
+      rgba(217, 119, 6, 0.07) 0%,
+      transparent 65%
+    );
+  mix-blend-mode: screen;
+}
+
+/* Hero — vinheta cinematográfica nas bordas */
+.hero-vignette {
+  background: radial-gradient(
+    ellipse 130% 110% at 50% 45%,
+    transparent 60%,
+    rgba(6, 6, 8, 0.18) 84%,
+    rgba(6, 6, 8, 0.36) 100%
+  );
+}
+
+/* Hero — régua vertical decorativa ao lado do título */
+.hero-frame-line {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(251, 191, 36, 0.38) 18%,
+    rgba(251, 191, 36, 0.38) 55%,
+    rgba(251, 191, 36, 0.1) 85%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px rgba(251, 191, 36, 0.18);
+}
+
+/* Hero — linha de acento dourada sob o título */
+.hero-accent-line {
+  background: linear-gradient(
+    90deg,
+    rgba(251, 191, 36, 0.65),
+    rgba(217, 119, 6, 0.25)
+  );
+  box-shadow: 0 0 8px rgba(251, 191, 36, 0.3);
+}
+
+.hero-accent-dot {
+  background: rgba(251, 191, 36, 0.85);
+  box-shadow: 0 0 6px rgba(251, 191, 36, 0.5);
+}
+
+.hero-accent-line--fade {
+  background: linear-gradient(
+    90deg,
+    rgba(251, 191, 36, 0.3),
+    transparent
+  );
+}
+
+/* Hero — indicador de rolagem: traço vertical animado */
+@keyframes hero-scroll-cue {
+  0%   { transform: scaleY(0); transform-origin: top; opacity: 0.8; }
+  55%  { transform: scaleY(1); transform-origin: top; opacity: 0.8; }
+  56%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; opacity: 0.3; }
+}
+
+.hero-scroll-cue {
+  height: 2.75rem;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(251, 191, 36, 0.55),
+    rgba(251, 191, 36, 0.08)
+  );
+}
+
+.hero-scroll-cue::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  animation: hero-scroll-cue 2.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-cue::after {
+    animation: none;
+  }
 }
 
 .hero-bg-bottom-fade {
@@ -287,24 +412,31 @@
 }
 
 @media (min-width: 1024px) {
+  /* No desktop o gradiente lateral já garante a leitura; o foco radial fica leve */
   .hero-bg-content-scrim {
-    --hero-scrim-x: 26%;
-    --hero-scrim-y: 70%;
+    --hero-scrim-x: 22%;
+    --hero-scrim-y: 72%;
+    background: radial-gradient(
+      ellipse 90% 70% at var(--hero-scrim-x) var(--hero-scrim-y),
+      rgba(6, 6, 8, 0.26) 0%,
+      rgba(6, 6, 8, 0.08) 55%,
+      transparent 100%
+    );
   }
 }
 
 /* Hero — fundo um pouco mais claro no mobile */
 @media (max-width: 1023px) {
   .hero-bg-mobile {
-    filter: saturate(0.72) contrast(1.03) brightness(0.75);
+    filter: saturate(0.8) contrast(1.02) brightness(0.94);
   }
 
   .hero-bg-scrim {
     background: linear-gradient(
       180deg,
-      rgba(6, 6, 8, 0.4) 0%,
-      rgba(6, 6, 8, 0.36) 40%,
-      rgba(6, 6, 8, 0.46) 100%
+      rgba(6, 6, 8, 0.26) 0%,
+      rgba(6, 6, 8, 0.22) 40%,
+      rgba(6, 6, 8, 0.32) 100%
     );
   }
 
@@ -314,8 +446,8 @@
     background:
       radial-gradient(
         ellipse 120% 80% at var(--hero-scrim-x) var(--hero-scrim-y),
-        rgba(6, 6, 8, 0.44) 0%,
-        rgba(6, 6, 8, 0.16) 55%,
+        rgba(6, 6, 8, 0.32) 0%,
+        rgba(6, 6, 8, 0.12) 55%,
         transparent 100%
       );
   }
@@ -394,16 +526,35 @@
 }
 
 .hero-btn.hero-btn-primary {
-  border: 1px solid color-mix(in srgb, var(--gold-neon) 55%, transparent);
-  background: var(--gold-neon);
+  border: 1px solid color-mix(in srgb, var(--gold-neon-bright) 45%, transparent);
+  background: linear-gradient(
+    180deg,
+    #f59e0b 0%,
+    var(--gold-neon) 55%,
+    var(--gold-dim) 100%
+  );
   color: #fff;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.22) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.2) inset,
+    0 6px 20px rgba(0, 0, 0, 0.4),
+    0 0 28px rgba(217, 119, 6, 0.22);
 }
 
 .hero-btn.hero-btn-primary:hover {
-  border-color: color-mix(in srgb, var(--gold-neon-bright) 45%, transparent);
-  background: #f59e0b;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  border-color: color-mix(in srgb, var(--gold-neon-core) 55%, transparent);
+  background: linear-gradient(
+    180deg,
+    #fbbf24 0%,
+    #f59e0b 55%,
+    var(--gold-neon) 100%
+  );
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.28) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.18) inset,
+    0 8px 24px rgba(0, 0, 0, 0.44),
+    0 0 40px rgba(217, 119, 6, 0.32);
   transform: translateY(-1px);
 }
 
@@ -453,22 +604,26 @@
 
 .hero-btn.hero-btn-secondary,
 #inicio .hero-btn.hero-btn-secondary {
-  border-color: rgba(255, 255, 255, 0.24);
-  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.22);
+  background-color: rgba(255, 255, 255, 0.05);
   background-image: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
   color: rgba(255, 255, 255, 0.95);
-  box-shadow: none;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    0 4px 16px rgba(0, 0, 0, 0.25);
 }
 
 .hero-btn.hero-btn-secondary:hover,
 #inicio .hero-btn.hero-btn-secondary:hover {
-  border-color: rgba(255, 255, 255, 0.38);
-  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.09);
   background-image: none;
   color: #fff;
-  box-shadow: none;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.14) inset,
+    0 6px 20px rgba(0, 0, 0, 0.3);
   transform: translateY(-1px);
 }
 
