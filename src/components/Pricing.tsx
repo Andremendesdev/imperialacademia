@@ -73,7 +73,7 @@ function PricingCard({
   return (
     <div
       role="listitem"
-      className={`pricing-card group/card relative flex w-full max-w-md flex-col rounded-2xl p-6 motion-reduce:transition-none motion-reduce:hover:transform-none lg:p-8 ${
+      className={`pricing-card group/card relative flex h-full w-full max-w-md flex-col rounded-2xl p-6 motion-reduce:transition-none motion-reduce:hover:transform-none lg:max-w-none lg:p-7 ${
         visible ? `animate-scale-in ${delayClass}` : "opacity-0"
       }`}
     >
@@ -204,7 +204,7 @@ export function Pricing() {
         </div>
 
         <div
-          className="mx-auto flex max-w-md flex-col gap-6"
+          className="mx-auto grid max-w-md grid-cols-1 gap-6 lg:max-w-none lg:grid-cols-3 lg:items-stretch lg:gap-5"
           role="list"
           aria-label="Planos da Academia Imperial"
         >
