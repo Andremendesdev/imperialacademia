@@ -412,15 +412,37 @@
 }
 
 @media (min-width: 1024px) {
+  .hero-bg-mobile {
+    filter: saturate(0.82) contrast(1.02) brightness(0.96);
+  }
+
+  .hero-bg-scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(6, 6, 8, 0.24) 0%,
+      rgba(6, 6, 8, 0.2) 40%,
+      rgba(6, 6, 8, 0.28) 100%
+    );
+  }
+
   /* No desktop o gradiente lateral já garante a leitura; o foco radial fica leve */
   .hero-bg-content-scrim {
     --hero-scrim-x: 22%;
     --hero-scrim-y: 72%;
     background: radial-gradient(
       ellipse 90% 70% at var(--hero-scrim-x) var(--hero-scrim-y),
-      rgba(6, 6, 8, 0.26) 0%,
-      rgba(6, 6, 8, 0.08) 55%,
+      rgba(6, 6, 8, 0.2) 0%,
+      rgba(6, 6, 8, 0.06) 55%,
       transparent 100%
+    );
+  }
+
+  .hero-vignette {
+    background: radial-gradient(
+      ellipse 130% 110% at 50% 45%,
+      transparent 64%,
+      rgba(6, 6, 8, 0.14) 86%,
+      rgba(6, 6, 8, 0.28) 100%
     );
   }
 }
