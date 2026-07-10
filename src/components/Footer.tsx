@@ -4,7 +4,8 @@ import Link from "next/link";
 import { MapPin, Phone, ExternalLink, ArrowUp, Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { siteContact } from "@/lib/site-contact";
+import { WhatsAppLink } from "@/components/WhatsAppLink";
+import { getSiteContactReadiness, siteContact } from "@/lib/site-contact";
 
 function InstagramIcon({ size = 18 }: { size?: number }) {
   return (
@@ -47,7 +48,7 @@ const socialLinks = [
 
 function FooterColumnTitle({ children }: { children: ReactNode }) {
   return (
-    <p className="mb-4 font-display text-sm tracking-[0.14em] text-neon-gold uppercase">
+    <p className="mb-4 font-display text-sm tracking-[0.14em] text-amber-400/90 uppercase">
       {children}
     </p>
   );
@@ -63,7 +64,7 @@ function ContactRow({
   return (
     <div className="flex gap-3">
       <div
-        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-amber-800/30 bg-amber-950/40 shadow-[0_0_14px_rgba(217,119,6,0.15)]"
+        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04]"
         aria-hidden
       >
         <Icon size={18} className="neon-icon-gold" />
@@ -75,6 +76,7 @@ function ContactRow({
 
 export function Footer() {
   const year = new Date().getFullYear();
+  const contactReady = getSiteContactReadiness();
 
   return (
     <footer
@@ -124,32 +126,29 @@ export function Footer() {
         <div className="mb-10 grid grid-cols-1 gap-10 lg:mb-12 lg:grid-cols-3 lg:gap-10">
           {/* Marca + CTA */}
           <div className="flex flex-col gap-5">
-            <Link href="#inicio" className="group flex w-fit items-center gap-0">
+            <Link href="#inicio" className="group w-fit shrink-0">
               <Image
                 src="/icon.png"
-                alt=""
+                alt="Academia Imperial"
                 width={1432}
                 height={901}
                 unoptimized
-                className="navbar-logo-icon h-9 w-auto max-h-10 shrink-0"
-                sizes="56px"
+                className="navbar-logo-icon h-12 w-auto max-h-14 shrink-0 transition-opacity group-hover:opacity-90"
+                sizes="72px"
               />
-              <div className="-ml-0.5 flex flex-col leading-none">
-                <span className="text-[9px] font-semibold tracking-[0.22em] text-zinc-400 uppercase">
-                  Academia
-                </span>
-                <span className="font-display text-xl tracking-[0.06em] text-white transition-colors group-hover:text-[var(--white-neon)]">
-                  IMPERIAL
-                </span>
-              </div>
             </Link>
             <p className="max-w-sm text-sm font-light leading-relaxed text-zinc-500">
-              Musculação, Muay Thai, Boxe e FitDance em um só lugar — estrutura
-              premium e equipe preparada para sua evolução.
+              Academia completa em Piraju — equipamentos, acompanhamento e
+              planos claros para você começar com confiança.
             </p>
-            <Button asChild size="sm" className="w-fit">
-              <Link href="#planos">Ver planos</Link>
-            </Button>
+            <div className="flex flex-wrap gap-3">
+              <Button asChild size="sm" className="wpp-gold-pulse">
+                <WhatsAppLink>Falar no WhatsApp</WhatsAppLink>
+              </Button>
+              <Button asChild variant="outline" size="sm" className="w-fit">
+                <Link href="#planos">Ver planos</Link>
+              </Button>
+            </div>
           </div>
 
           {/* Endereço + horário */}
@@ -158,7 +157,7 @@ export function Footer() {
             <div className="flex flex-col gap-5">
               <ContactRow icon={MapPin}>
                 <address className="not-italic">
-                  <p className="text-sm leading-relaxed text-zinc-200">
+                  <p className="break-words text-sm leading-relaxed text-zinc-200">
                     {siteContact.address.street}
                   </p>
                   <p className="mt-1 text-sm text-zinc-400">
@@ -168,7 +167,7 @@ export function Footer() {
                     href={siteContact.address.mapsLinkUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-2.5 inline-flex items-center gap-1.5 text-xs font-medium tracking-wide text-neon-gold transition-colors hover:text-amber-300"
+                    className="mt-2.5 inline-flex items-center gap-1.5 text-xs font-medium tracking-wide text-amber-400/90 transition-colors hover:text-amber-300"
                   >
                     Abrir no Google Maps
                     <ExternalLink size={12} aria-hidden />
@@ -198,10 +197,10 @@ export function Footer() {
             <div className="flex flex-col gap-5">
               <a
                 href={siteContact.phone.href}
-                className="glass-card group/phone flex items-center gap-3 rounded-2xl border border-white/8 p-4 transition-[border-color,box-shadow,transform] duration-300 hover:border-amber-800/45 hover:shadow-[0_0_28px_rgba(217,119,6,0.2)] active:scale-[0.99]"
+                className="glass-card group/phone flex items-center gap-3 rounded-2xl border border-white/8 p-4 transition-[border-color,transform] duration-300 hover:border-white/14 active:scale-[0.99]"
               >
                 <div
-                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-amber-800/30 bg-amber-950/40 transition-shadow duration-300 group-hover/phone:shadow-[0_0_18px_rgba(217,119,6,0.35)]"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04]"
                   aria-hidden
                 >
                   <Phone
@@ -210,7 +209,7 @@ export function Footer() {
                   />
                 </div>
                 <div>
-                  <p className="text-[10px] font-medium tracking-[0.2em] text-zinc-500 uppercase">
+                  <p className="text-xs font-medium tracking-[0.16em] text-zinc-500 uppercase">
                     Telefone
                   </p>
                   <p className="text-base font-semibold tracking-wide text-zinc-100 group-hover/phone:text-white">
@@ -220,7 +219,7 @@ export function Footer() {
               </a>
 
               <div>
-                <p className="mb-3 text-[10px] font-medium tracking-[0.2em] text-zinc-500 uppercase">
+                <p className="mb-3 text-xs font-medium tracking-[0.16em] text-zinc-500 uppercase">
                   Redes sociais
                 </p>
                 <div className="flex gap-3">
@@ -231,7 +230,7 @@ export function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${label} da ${siteContact.name}`}
-                      className="glass-card flex h-12 w-12 items-center justify-center rounded-full border border-white/8 text-neon-gold transition-[border-color,box-shadow,transform,color] duration-300 hover:scale-105 hover:border-amber-800/50 hover:text-amber-300 hover:shadow-[0_0_24px_rgba(251,191,36,0.35)]"
+                      className="glass-card flex h-12 w-12 items-center justify-center rounded-full border border-white/8 text-amber-400/90 transition-[border-color,transform,color] duration-300 hover:scale-105 hover:border-white/16 hover:text-amber-300"
                     >
                       <Icon size={20} />
                     </a>
@@ -267,19 +266,35 @@ export function Footer() {
             </a>
           </div>
 
-          <div className="footer-map-frame glass-card relative overflow-hidden rounded-2xl border border-white/8 shadow-[0_0_40px_rgba(0,0,0,0.4)] transition-[border-color,box-shadow] duration-500 group-hover/map:border-amber-800/35 group-hover/map:shadow-[0_0_48px_rgba(217,119,6,0.12)]">
+          <div className="footer-map-frame glass-card relative overflow-hidden rounded-2xl border border-white/8 shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-[border-color] duration-500 group-hover/map:border-white/14">
             <div
               className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-[#060608]/80 to-transparent"
               aria-hidden
             />
-            <iframe
-              src={siteContact.address.mapsEmbedUrl}
-              title={`Localização da ${siteContact.name} no Google Maps`}
-              className="aspect-[16/9] w-full min-h-[260px] border-0 sm:min-h-[300px] lg:min-h-[380px]"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
+            {contactReady.maps ? (
+              <iframe
+                src={siteContact.address.mapsEmbedUrl}
+                title={`Localização da ${siteContact.name} no Google Maps`}
+                className="aspect-[16/9] w-full min-h-[260px] border-0 sm:min-h-[300px] lg:min-h-[380px]"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            ) : (
+              <div className="flex aspect-[16/9] min-h-[260px] flex-col items-center justify-center gap-3 px-6 text-center sm:min-h-[300px] lg:min-h-[380px]">
+                <p className="text-sm text-zinc-400">
+                  Mapa indisponível no momento.
+                </p>
+                <a
+                  href={siteContact.address.mapsLinkUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-amber-400/90 hover:text-amber-300"
+                >
+                  Abrir localização no Google Maps
+                </a>
+              </div>
+            )}
           </div>
         </div>
 
@@ -290,12 +305,12 @@ export function Footer() {
           </p>
 
           <div className="flex items-center gap-4">
-            <p className="hidden text-[10px] tracking-[0.15em] text-zinc-700 uppercase sm:block">
+            <p className="hidden text-xs tracking-[0.12em] text-zinc-700 uppercase sm:block">
               Treinamento de alto nível
             </p>
             <a
               href="#inicio"
-              className="glass-card flex h-10 w-10 items-center justify-center rounded-full border border-white/8 text-zinc-500 transition-[border-color,color,box-shadow] duration-300 hover:border-amber-800/45 hover:text-amber-300 hover:shadow-[0_0_16px_rgba(251,191,36,0.35)]"
+              className="glass-card flex h-10 w-10 items-center justify-center rounded-full border border-white/8 text-zinc-500 transition-[border-color,color] duration-300 hover:border-white/16 hover:text-zinc-300"
               aria-label="Voltar ao topo"
             >
               <ArrowUp size={16} aria-hidden />

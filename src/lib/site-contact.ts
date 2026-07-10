@@ -1,45 +1,139 @@
 /**
- * Dados de contato da Academia Imperial.
+ * Contato da Academia Imperial (Piraju — SP).
  *
- * Como obter mapsEmbedUrl:
- * 1. Abra Google Maps e busque o endereço da academia
- * 2. Clique em "Compartilhar" → "Incorporar um mapa"
- * 3. Copie o valor do atributo src do iframe gerado
+ * Valores padrão são os dados públicos da unidade. Sobrescreva via `.env.local`
+ * (veja `.env.example`).
  *
- * mapsLinkUrl: use o link "Abrir no Google Maps" da mesma tela de compartilhamento.
+ * mapsEmbedUrl: Google Maps → Compartilhar → Incorporar um mapa → copiar `src`.
  */
 
+function readEnv(name: string, fallback: string): string {
+  const value = process.env[name];
+  return typeof value === "string" && value.trim().length > 0
+    ? value.trim()
+    : fallback;
+}
+
+const DEFAULT_STREET =
+  "Av. Doutor Álvaro Schmidt Gallo, 1861 — Jardim Ana Carolina II";
+const DEFAULT_CITY = "Piraju — SP, CEP 18807-270";
+const DEFAULT_MAPS_QUERY =
+  "Academia Imperial, Av. Doutor Álvaro Schmidt Gallo, 1861, Piraju SP";
+const DEFAULT_MAPS_LINK = `https://maps.google.com/?q=${encodeURIComponent(DEFAULT_MAPS_QUERY)}`;
+const DEFAULT_MAPS_EMBED = `https://maps.google.com/maps?q=${encodeURIComponent(DEFAULT_MAPS_QUERY)}&z=16&output=embed`;
+
 export const siteContact = {
-  name: "Academia Imperial",
+  name: readEnv("NEXT_PUBLIC_SITE_NAME", "Academia Imperial"),
   address: {
-    street: "Rua Exemplo, 123 — Bairro",
-    city: "Cidade — UF, CEP 00000-000",
-    mapsEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.197!2d-46.6333!3d-23.5505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDMzJzAxLjgiUyA0NsKwMzcnNTkuOSJX!5e0!3m2!1spt-BR!2sbr!4v1",
-    mapsLinkUrl: "https://maps.google.com/?q=Academia+Imperial",
+    street: readEnv("NEXT_PUBLIC_ADDRESS_STREET", DEFAULT_STREET),
+    city: readEnv("NEXT_PUBLIC_ADDRESS_CITY", DEFAULT_CITY),
+    mapsEmbedUrl: readEnv("NEXT_PUBLIC_MAPS_EMBED_URL", DEFAULT_MAPS_EMBED),
+    mapsLinkUrl: readEnv("NEXT_PUBLIC_MAPS_LINK_URL", DEFAULT_MAPS_LINK),
   },
   phone: {
-    display: "(00) 00000-0000",
-    href: "tel:+5500000000000",
+    display: readEnv("NEXT_PUBLIC_PHONE_DISPLAY", "(14) 99864-6840"),
+    href: readEnv("NEXT_PUBLIC_PHONE_HREF", "tel:+5514998646840"),
   },
-  /** Número só com DDI + DDD + número (sem +, espaços ou traços) para wa.me */
   whatsapp: {
-    number: "5500000000000",
-    message:
-      "Olá! Vim pelo site da Academia Imperial e gostaria de mais informações.",
+    number: readEnv("NEXT_PUBLIC_WHATSAPP_NUMBER", "5514998646840"),
+    message: readEnv(
+      "NEXT_PUBLIC_WHATSAPP_MESSAGE",
+      "Olá! Vim pelo site da Academia Imperial e gostaria de mais informações."
+    ),
   },
   hours: {
-    weekdays: { label: "Seg — Sex", time: "06h às 22h" },
-    weekend: { label: "Sáb — Dom", time: "08h às 14h" },
+    weekdays: { label: "Seg — Sex", time: "05h às 22h" },
+    weekend: { label: "Sábado", time: "05h às 13h" },
   },
   social: {
-    instagram: "https://instagram.com/academiaimperial",
-    facebook: "https://facebook.com/academiaimperial",
+    instagram: readEnv(
+      "NEXT_PUBLIC_INSTAGRAM_URL",
+      "https://instagram.com/imperial.piraju"
+    ),
+    facebook: readEnv(
+      "NEXT_PUBLIC_FACEBOOK_URL",
+      "https://facebook.com/academiaimperial"
+    ),
   },
-} as const;
+};
 
-export function getWhatsAppHref() {
+export type SiteContactReadiness = {
+  whatsapp: boolean;
+  phone: boolean;
+  address: boolean;
+  maps: boolean;
+  hasDirectContact: boolean;
+};
+
+const PLACEHOLDER_WHATSAPP = /^550*$/;
+const PLACEHOLDER_PHONE = /\(00\)|00000-0000|0000000000/i;
+const PLACEHOLDER_ADDRESS = /exemplo|00000-000|cidade\s*—/i;
+
+export function normalizePhoneDigits(value: string): string {
+  return value.replace(/\D/g, "");
+}
+
+export function isValidWhatsAppNumber(number: string): boolean {
+  const digits = normalizePhoneDigits(number);
+  return (
+    digits.length >= 12 &&
+    digits.length <= 13 &&
+    digits.startsWith("55") &&
+    !PLACEHOLDER_WHATSAPP.test(digits)
+  );
+}
+
+export function getSiteContactReadiness(): SiteContactReadiness {
+  const whatsapp = isValidWhatsAppNumber(siteContact.whatsapp.number);
+  const phone =
+    !PLACEHOLDER_PHONE.test(siteContact.phone.display) &&
+    normalizePhoneDigits(siteContact.phone.href).length >= 12;
+  const address = !PLACEHOLDER_ADDRESS.test(siteContact.address.street);
+  const maps =
+    siteContact.address.mapsEmbedUrl.length > 0 &&
+    siteContact.address.mapsLinkUrl.length > 0;
+
+  return {
+    whatsapp,
+    phone,
+    address,
+    maps,
+    hasDirectContact: whatsapp || phone,
+  };
+}
+
+export function getContactFallbackHref(): string {
+  const { phone } = getSiteContactReadiness();
+  if (phone) return siteContact.phone.href;
+  return "#contato";
+}
+
+export function getWhatsAppHref(options?: { message?: string }): string | null {
+  if (!getSiteContactReadiness().whatsapp) return null;
+
   const { number, message } = siteContact.whatsapp;
-  const params = new URLSearchParams({ text: message });
-  return `https://wa.me/${number}?${params.toString()}`;
+  const text = (options?.message ?? message).trim();
+  const params = new URLSearchParams({ text });
+  return `https://wa.me/${normalizePhoneDigits(number)}?${params.toString()}`;
+}
+
+/** WhatsApp configurado, ou telefone / seção contato como fallback. */
+export function getWhatsAppHrefOrFallback(options?: { message?: string }): string {
+  return getWhatsAppHref(options) ?? getContactFallbackHref();
+}
+
+export function getPlanWhatsAppHref(
+  planName: string,
+  billing: "monthly" | "quarterly" | "annual"
+): string {
+  const period =
+    billing === "monthly"
+      ? "mensal"
+      : billing === "quarterly"
+        ? "trimestral"
+        : "anual";
+  const safePlan = planName.trim().slice(0, 80);
+  return getWhatsAppHrefOrFallback({
+    message: `Olá! Vim pelo site da Academia Imperial e quero o plano ${safePlan} (${period}). Pode me ajudar?`,
+  });
 }

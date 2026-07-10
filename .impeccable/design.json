@@ -1,0 +1,235 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-10T12:09:00.000Z",
+  "title": "Design System: Academia Imperial",
+  "extensions": {
+    "colorMeta": {
+      "bg-deep": {
+        "role": "neutral",
+        "displayName": "Preto Hall",
+        "canonical": "#060608",
+        "tonalRamp": ["#060608", "#0c0c10", "#141418", "#1c1c22", "#2a2a32", "#3f3f46", "#71717a", "#d4d4d8"]
+      },
+      "gold": {
+        "role": "primary",
+        "displayName": "Âmbar Imperial",
+        "canonical": "#d97706",
+        "tonalRamp": ["#451a03", "#78350f", "#92400e", "#b45309", "#d97706", "#f59e0b", "#fbbf24", "#fde68a"]
+      },
+      "gold-bright": {
+        "role": "primary",
+        "displayName": "Ouro Brilhante",
+        "canonical": "#fbbf24",
+        "tonalRamp": ["#78350f", "#92400e", "#b45309", "#d97706", "#f59e0b", "#fbbf24", "#fcd34d", "#fef3c7"]
+      },
+      "gold-core": {
+        "role": "primary",
+        "displayName": "Núcleo Claro",
+        "canonical": "#fcd34d",
+        "tonalRamp": ["#92400e", "#b45309", "#d97706", "#f59e0b", "#fbbf24", "#fcd34d", "#fde68a", "#fffbeb"]
+      },
+      "gold-dim": {
+        "role": "primary",
+        "displayName": "Ouro Dim",
+        "canonical": "#b45309",
+        "tonalRamp": ["#451a03", "#78350f", "#92400e", "#b45309", "#d97706", "#f59e0b", "#fbbf24", "#fde68a"]
+      },
+      "white-neon": {
+        "role": "neutral",
+        "displayName": "Branco Frio",
+        "canonical": "#F2F2FF",
+        "tonalRamp": ["#18181b", "#27272a", "#3f3f46", "#71717a", "#a1a1aa", "#d4d4d8", "#F2F2FF", "#ffffff"]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "Branco Puro",
+        "canonical": "#ffffff",
+        "tonalRamp": ["#18181b", "#3f3f46", "#71717a", "#a1a1aa", "#d4d4d8", "#e4e4e7", "#f4f4f5", "#ffffff"]
+      },
+      "zinc-300": {
+        "role": "neutral",
+        "displayName": "Zinc 300",
+        "canonical": "#d4d4d8",
+        "tonalRamp": ["#18181b", "#27272a", "#3f3f46", "#52525b", "#71717a", "#a1a1aa", "#d4d4d8", "#f4f4f5"]
+      },
+      "zinc-400": {
+        "role": "neutral",
+        "displayName": "Zinc 400",
+        "canonical": "#a1a1aa",
+        "tonalRamp": ["#18181b", "#27272a", "#3f3f46", "#52525b", "#71717a", "#a1a1aa", "#d4d4d8", "#f4f4f5"]
+      },
+      "zinc-500": {
+        "role": "neutral",
+        "displayName": "Zinc 500",
+        "canonical": "#71717a",
+        "tonalRamp": ["#18181b", "#27272a", "#3f3f46", "#52525b", "#71717a", "#a1a1aa", "#d4d4d8", "#f4f4f5"]
+      },
+      "zinc-600": {
+        "role": "neutral",
+        "displayName": "Zinc 600",
+        "canonical": "#52525b",
+        "tonalRamp": ["#09090b", "#18181b", "#27272a", "#3f3f46", "#52525b", "#71717a", "#a1a1aa", "#d4d4d8"]
+      },
+      "whatsapp": {
+        "role": "secondary",
+        "displayName": "WhatsApp Green",
+        "canonical": "#25D366",
+        "tonalRamp": ["#0b3d24", "#14532d", "#166534", "#15803d", "#16a34a", "#25D366", "#4ade80", "#bbf7d0"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Section Display",
+        "purpose": "Títulos de seção em duas linhas (Bebas)."
+      },
+      "display-lg": {
+        "displayName": "Display Large",
+        "purpose": "Títulos de seção grandes (Estrutura)."
+      },
+      "hero-display": {
+        "displayName": "Hero Display",
+        "purpose": "Academia / Imperial na hero."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Leads e parágrafos (DM Sans light)."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Badges, meta, eyebrow uppercase."
+      }
+    },
+    "shadows": [
+      {
+        "name": "cta-glow",
+        "value": "0 4px 28px rgba(217,119,6,0.42), 0 0 26px rgba(251,191,36,0.28)",
+        "purpose": "Glow do botão primário / WhatsApp pulse."
+      },
+      {
+        "name": "card-hover",
+        "value": "0 0 28px rgba(217,119,6,0.15)",
+        "purpose": "Hover de cards de plano e contato."
+      },
+      {
+        "name": "navbar-scrolled",
+        "value": "0 4px 32px rgba(0,0,0,0.22)",
+        "purpose": "Navbar após scroll — sombra neutra."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Entradas de seção e hero (slide-up, hero-btn-in)."
+      },
+      {
+        "name": "wpp-pulse",
+        "value": "2.2s ease-in-out infinite",
+        "purpose": "Pulso dourado só em CTA de conversão."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "CTA âmbar — ação principal (WhatsApp / Começar Agora).",
+      "html": "<button class=\"ds-btn-primary\">Começar Agora</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 56px; padding: 16px 36px; border: none; border-radius: 8px; background: #d97706; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.02em; cursor: pointer; box-shadow: 0 4px 28px rgba(217,119,6,0.42), 0 0 26px rgba(251,191,36,0.28); transition: background 0.3s, box-shadow 0.3s, transform 0.2s; } .ds-btn-primary:hover { background: #fbbf24; box-shadow: 0 6px 32px rgba(217,119,6,0.54), 0 0 36px rgba(251,191,36,0.38); transform: translateY(-1px); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 2px #060608, 0 0 0 4px rgba(217,119,6,0.6); } .ds-btn-primary:active { transform: translateY(0); }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Outline limpo — ver estrutura/fotos, sem fill.",
+      "html": "<button class=\"ds-btn-secondary\">Ver fotos da Academia</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; height: 56px; padding: 16px 36px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.24); background: transparent; color: rgba(255,255,255,0.95); font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; box-shadow: none; transition: border-color 0.3s; } .ds-btn-secondary:hover { border-color: rgba(255,255,255,0.38); background: transparent; } .ds-btn-secondary:focus-visible { outline: none; box-shadow: 0 0 0 2px #060608, 0 0 0 4px rgba(217,119,6,0.5); }"
+    },
+    {
+      "name": "Section Badge",
+      "kind": "chip",
+      "refersTo": "badge-section",
+      "description": "Badge neutra de seção — sem neon fora da hero.",
+      "html": "<span class=\"ds-badge-section\"><span class=\"ds-badge-dot\"></span>Planos</span>",
+      "css": ".ds-badge-section { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: #a1a1aa; font-family: 'DM Sans', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; } .ds-badge-dot { width: 4px; height: 4px; border-radius: 9999px; background: #71717a; }"
+    },
+    {
+      "name": "Hero Badge",
+      "kind": "chip",
+      "refersTo": "badge-neon",
+      "description": "Badge dourada só na hero — glow mínimo.",
+      "html": "<span class=\"ds-badge-hero\"><span class=\"ds-badge-hero-dot\"></span>Melhor academia de Piraju</span>",
+      "css": ".ds-badge-hero { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 9999px; border: 1px solid rgba(217,119,6,0.28); background: rgba(69,26,3,0.4); color: #fbbf24; font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; box-shadow: 0 0 6px rgba(251,191,36,0.08); } .ds-badge-hero-dot { width: 5px; height: 5px; border-radius: 9999px; background: #fbbf24; box-shadow: 0 0 4px rgba(251,191,36,0.28); }"
+    },
+    {
+      "name": "Glass Card",
+      "kind": "card",
+      "refersTo": "card-glass",
+      "description": "Card de plano/contato — flat + borda; glow só no hover.",
+      "html": "<div class=\"ds-card-glass\"><p class=\"ds-card-label\">Mensal</p><p class=\"ds-card-price\">R$ 119</p><p class=\"ds-card-body\">Acesso completo à estrutura.</p></div>",
+      "css": ".ds-card-glass { max-width: 280px; padding: 24px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); background: rgba(8,8,12,0.72); color: #d4d4d8; font-family: 'DM Sans', sans-serif; transition: border-color 0.3s, box-shadow 0.3s; } .ds-card-glass:hover { border-color: rgba(146,64,14,0.4); box-shadow: 0 0 28px rgba(217,119,6,0.15); } .ds-card-label { margin: 0 0 12px; font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #71717a; } .ds-card-price { margin: 0 0 8px; font-family: 'Bebas Neue', sans-serif; font-size: 40px; line-height: 1; color: #F2F2FF; letter-spacing: 0.02em; } .ds-card-body { margin: 0; font-size: 14px; font-weight: 300; line-height: 1.6; color: #a1a1aa; }"
+    },
+    {
+      "name": "Navbar Link",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Link de nav — zinc → white, sem underline neon.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav-link\" href=\"#planos\">Planos</a><a class=\"ds-nav-link\" href=\"#estrutura\">Estrutura</a><a class=\"ds-nav-link\" href=\"#contato\">Contato</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 4px; align-items: center; } .ds-nav-link { padding: 8px 16px; color: #a1a1aa; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.02em; text-decoration: none; transition: color 0.2s; } .ds-nav-link:hover { color: #ffffff; } .ds-nav-link:focus-visible { outline: none; box-shadow: 0 0 0 2px rgba(217,119,6,0.5); border-radius: 8px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "O Hall Dourado",
+    "overview": "O sistema visual da Academia Imperial é um hall escuro e acolhedor: o visitante entra num espaço quase noturno (#060608), onde o ouro não grita — convida. A tipografia display (Bebas Neue) carrega a marca; o ouro (#d97706 → #fbbf24) aparece com parcimônia em CTAs, acentos e prova. O tom é claro e motivador: dá para começar, sem medo.\n\nDensidade média-baixa: seções com respiro, hierarquia tipográfica forte, poucos cards. Glass e blur existem, mas como superfície de apoio — nunca como estética principal. Fotos reais da academia e prova local (reviews, números) sustentam a conversão para WhatsApp.\n\nO sistema rejeita explicitamente o anti-referência do PRODUCT.md: visual neon/cyber demais — brilho exagerado, estética gamer ou futurista que compete com a marca e afasta quem só quer treinar.",
+    "keyCharacteristics": [
+      "Escuro profundo + ouro âmbar como convite (não como neon de pista)",
+      "Display Bebas + corpo DM Sans: marca tipográfica, corpo legível",
+      "Glow dourado reservado a CTA / estado — superfícies flat no restante",
+      "Premium contido: tipografia e imagem carregam; ouro é raro",
+      "Conversão óbvia: WhatsApp primário, estrutura/fotos secundário"
+    ],
+    "rules": [
+      {
+        "name": "The Invitation Gold Rule",
+        "body": "O ouro aparece em ≤10% da tela em fill sólido. Fora do CTA, preferir tipografia branca, foto e zinc. Se a tela “pisca” dourado, o ouro está demais.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Cyber Neon Rule",
+        "body": "Proibido glow multi-camada em texto, grid futurista, bordas neon brancas/douradas decorativas e estética gamer. Ouro = convite; não = pista de LED.",
+        "section": "colors"
+      },
+      {
+        "name": "The Type Carries Brand Rule",
+        "body": "Em seções fora da hero, a marca tipográfica (Bebas + hierarquia) vem antes do ouro. Não compensar tipografia fraca com mais glow.",
+        "section": "typography"
+      },
+      {
+        "name": "The Glow-On-Action Rule",
+        "body": "Glow dourado = resposta a intenção (CTA, popular, hover de conversão). Em repouso, flat + borda. Se o glow não aponta para um clique, remova.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do manter o fundo em Preto Hall (#060608) e deixar a foto + scrim carregarem atmosfera.",
+      "Do usar Bebas Neue nos títulos de seção e DM Sans no corpo — tipografia como marca.",
+      "Do concentrar ouro sólido no CTA WhatsApp / “Começar Agora” e na escolha de plano.",
+      "Do preferir badge section (neutra) fora da hero.",
+      "Do respeitar prefers-reduced-motion nas animações de entrada e no pulse do WhatsApp."
+    ],
+    "donts": [
+      "Don't usar visual neon/cyber demais: brilho exagerado, estética gamer ou futurista que compete com a marca (PRODUCT.md anti-reference).",
+      "Don't recolocar grid futurista, bordas neon brancas/douradas na navbar, ou glow em todo texto/ícone.",
+      "Don't encher a tela de cards glass idênticos com ícone + título + texto.",
+      "Don't usar eyebrow uppercase tracked em toda seção como muleta; badges de seção são pontuais, não scaffolding AI.",
+      "Don't misturar fill ouro + sombra larga + borda 1px no mesmo elemento decorativo (ghost-card); no CTA, o glow é intencional e único.",
+      "Don't deixar o ouro virar a superfície — se a página parece pista de LED, falhou The Invitation Gold Rule."
+    ]
+  }
+}

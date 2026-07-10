@@ -12,9 +12,9 @@ const badgeVariants = cva(
         section:
           "border-white/12 bg-white/[0.04] text-zinc-400 shadow-none",
         neon:
-          "badge-neon-glow border-amber-600/45 bg-amber-950/40 text-neon-gold shadow-[0_0_10px_rgba(251,191,36,0.16)]",
+          "border-amber-600/35 bg-amber-950/30 text-amber-400 shadow-none",
         glass:
-          "glass-card border-white/10 text-zinc-300",
+          "border-white/10 bg-white/[0.04] text-zinc-300",
       },
     },
     defaultVariants: {

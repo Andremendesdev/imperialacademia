@@ -45,7 +45,7 @@ function StarRating({ rating }: { rating: number }) {
           size={14}
           className={
             i < rating
-              ? "fill-amber-400 text-amber-400 drop-shadow-[0_0_4px_rgba(251,191,36,0.5)]"
+              ? "fill-amber-400 text-amber-400"
               : "fill-zinc-700 text-zinc-700"
           }
           aria-hidden
@@ -64,28 +64,28 @@ function ReviewCard({
 
   return (
     <article
-      className="google-review-card glass-card w-[min(88vw,340px)] shrink-0 rounded-2xl border border-white/8 p-5 sm:w-[320px]"
+      className="google-review-card glass-card w-[min(88vw,340px)] min-w-0 shrink-0 rounded-2xl border border-white/8 p-5 sm:w-[320px]"
       aria-label={`Avaliação de ${review.name}`}
     >
-      <div className="mb-3 flex items-start justify-between gap-3">
-        <div className="flex items-center gap-3">
+      <div className="mb-3 flex min-w-0 items-start justify-between gap-3">
+        <div className="flex min-w-0 items-center gap-3">
           <div
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-amber-800/30 bg-amber-950/50 font-display text-lg text-neon-gold"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] font-display text-lg text-amber-400"
             aria-hidden
           >
             {initial}
           </div>
-          <div>
-            <p className="text-sm font-semibold text-zinc-100">{review.name}</p>
-            <p className="text-[10px] tracking-wide text-zinc-600">
-              {review.date}
+          <div className="min-w-0">
+            <p className="truncate text-sm font-semibold text-zinc-100">
+              {review.name}
             </p>
+            <p className="text-xs tracking-wide text-zinc-600">{review.date}</p>
           </div>
         </div>
         <GoogleIcon className="h-5 w-5 shrink-0 opacity-90" />
       </div>
       <StarRating rating={review.rating} />
-      <p className="mt-3 text-sm font-light leading-relaxed text-zinc-400">
+      <p className="mt-3 line-clamp-4 text-sm font-light leading-relaxed text-zinc-400">
         &ldquo;{review.text}&rdquo;
       </p>
     </article>
@@ -96,7 +96,7 @@ export function GoogleReviews() {
   const sectionRef = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
 
-  const marqueeItems = [...googleReviews, ...googleReviews];
+  const marqueeItems = googleReviews.length > 0 ? [...googleReviews, ...googleReviews] : [];
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -155,7 +155,7 @@ export function GoogleReviews() {
             href={googleReviewsMeta.googleReviewsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={`glass-card flex w-fit items-center gap-3 rounded-2xl border border-white/8 px-4 py-3 transition-[border-color,box-shadow] duration-300 hover:border-amber-800/45 hover:shadow-[0_0_24px_rgba(217,119,6,0.18)] ${
+            className={`glass-card flex w-fit items-center gap-3 rounded-2xl border border-white/8 px-4 py-3 transition-[border-color] duration-300 hover:border-white/14 ${
               visible ? "animate-slide-up delay-100" : "opacity-0"
             }`}
           >
@@ -171,13 +171,43 @@ export function GoogleReviews() {
                   aria-hidden
                 />
               </div>
-              <p className="text-[11px] text-zinc-500">
+              <p className="text-xs text-zinc-500">
                 +{googleReviewsMeta.totalReviews} avaliações no Google
               </p>
             </div>
           </a>
         </div>
 
+        {googleReviewsMeta.reviewsAreSample && (
+          <p
+            className={`mb-4 text-xs leading-relaxed text-zinc-500 ${
+              visible ? "animate-fade-in delay-150" : "opacity-0"
+            }`}
+          >
+            Depoimentos ilustrativos no site — confira todas as avaliações no
+            Google.
+          </p>
+        )}
+
+        {marqueeItems.length === 0 ? (
+          <div
+            className={`glass-card rounded-2xl border border-white/8 px-6 py-10 text-center ${
+              visible ? "animate-fade-in delay-200" : "opacity-0"
+            }`}
+          >
+            <p className="text-sm text-zinc-400">
+              Avaliações em breve. Enquanto isso, veja no Google:
+            </p>
+            <a
+              href={googleReviewsMeta.googleReviewsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex text-sm font-medium text-amber-400/90 hover:text-amber-300"
+            >
+              Abrir avaliações no Google Maps
+            </a>
+          </div>
+        ) : (
         <div
           className={`google-reviews-marquee relative -mx-6 sm:-mx-0 ${
             visible ? "animate-fade-in delay-200" : "opacity-0"
@@ -207,6 +237,7 @@ export function GoogleReviews() {
             </div>
           </div>
         </div>
+        )}
       </div>
     </section>
   );

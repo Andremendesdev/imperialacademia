@@ -1,7 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Location } from "@/components/Location";
-import { Modalidades } from "@/components/Modalidades";
 import { Benefits } from "@/components/Benefits";
 import { Pricing } from "@/components/Pricing";
 import { GoogleReviews } from "@/components/GoogleReviews";
@@ -13,7 +12,6 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Location />
-      <Modalidades />
       <Benefits />
       <Pricing />
       <GoogleReviews />

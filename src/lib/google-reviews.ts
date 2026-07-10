@@ -1,12 +1,15 @@
 /**
- * Avaliações exibidas no carrossel (placeholders — substitua por reviews reais do Google).
- * googleReviewsUrl: link da página de avaliações no Google Maps / Google Business.
+ * Avaliações do carrossel. `reviewsAreSample: true` indica conteúdo ilustrativo
+ * até integrar reviews reais do Google Business.
  */
 
 export const googleReviewsMeta = {
   rating: 4.9,
   totalReviews: 120,
-  googleReviewsUrl: "https://maps.google.com/?q=Academia+Imperial",
+  googleReviewsUrl:
+    process.env.NEXT_PUBLIC_GOOGLE_REVIEWS_URL?.trim() ||
+    "https://maps.google.com/?q=Academia+Imperial+Piraju",
+  reviewsAreSample: true,
 } as const;
 
 export const googleReviews = [

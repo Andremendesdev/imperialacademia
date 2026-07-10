@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getWhatsAppHref, siteContact } from "@/lib/site-contact";
+import { WhatsAppLink } from "@/components/WhatsAppLink";
+import { getSiteContactReadiness } from "@/lib/site-contact";
 
 function WhatsAppIcon({ size = 26 }: { size?: number }) {
   return (
@@ -19,6 +20,7 @@ function WhatsAppIcon({ size = 26 }: { size?: number }) {
 
 export function FloatingWhatsApp() {
   const [pastHero, setPastHero] = useState(false);
+  const { hasDirectContact } = getSiteContactReadiness();
 
   useEffect(() => {
     const hero = document.getElementById("inicio");
@@ -36,27 +38,24 @@ export function FloatingWhatsApp() {
     return () => observer.disconnect();
   }, []);
 
-  if (!pastHero) return null;
+  if (!pastHero || !hasDirectContact) return null;
 
   return (
-    <a
-      href={getWhatsAppHref()}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="whatsapp-fab animate-whatsapp-fab-enter group fixed right-4 bottom-4 z-40 flex h-12 items-center justify-center overflow-visible rounded-full transition-transform duration-300 hover:scale-[1.04] active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:scale-100 sm:right-6 sm:bottom-6 sm:h-14 sm:w-auto sm:gap-0"
-      aria-label={`Conversar no WhatsApp com a ${siteContact.name}`}
+    <WhatsAppLink
+      className="whatsapp-fab animate-whatsapp-fab-enter group fixed right-4 bottom-4 z-40 inline-flex h-14 w-14 items-center justify-center overflow-visible rounded-full bg-[#25D366] text-white shadow-[0_4px_16px_rgba(0,0,0,0.28)] ring-2 ring-[#25D366] transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:scale-100 sm:right-6 sm:bottom-6 sm:h-14 sm:w-auto sm:justify-start sm:gap-2 sm:rounded-full sm:py-1 sm:pr-4 sm:pl-1"
+      aria-label="Conversar no WhatsApp"
     >
-      <span className="relative flex h-12 w-12 shrink-0 items-center justify-center sm:h-14 sm:w-14">
+      <span className="relative flex h-12 w-12 shrink-0 items-center justify-center sm:h-12 sm:w-12">
         <span className="whatsapp-fab-pulse" aria-hidden />
         <span className="whatsapp-fab-pulse whatsapp-fab-pulse--delay" aria-hidden />
-        <span className="relative z-10 flex h-full w-full items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_4px_16px_rgba(0,0,0,0.28)] ring-2 ring-[#25D366] [&_svg]:h-[22px] [&_svg]:w-[22px] sm:[&_svg]:h-[26px] sm:[&_svg]:w-[26px]">
+        <span className="relative z-10 flex h-full w-full items-center justify-center [&_svg]:h-[26px] [&_svg]:w-[26px]">
           <WhatsAppIcon />
         </span>
       </span>
 
-      <span className="whatsapp-fab-label relative z-10 max-w-0 overflow-hidden whitespace-nowrap rounded-r-full bg-[#25D366] pr-0 text-sm font-semibold tracking-wide text-white opacity-0 transition-[max-width,opacity,padding] duration-300 group-hover:max-w-[11rem] group-hover:pr-5 group-hover:opacity-100 motion-reduce:transition-none">
-        Fale conosco
+      <span className="relative z-10 hidden whitespace-nowrap pr-1 text-sm font-semibold tracking-wide sm:inline">
+        WhatsApp
       </span>
-    </a>
+    </WhatsAppLink>
   );
 }

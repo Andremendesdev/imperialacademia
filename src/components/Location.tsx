@@ -208,7 +208,7 @@ export function Location() {
               <Badge
                 key={text}
                 variant="default"
-                className="text-[10px] sm:text-[11px] transition-shadow hover:border-amber-800/40 hover:shadow-[0_0_14px_rgba(217,119,6,0.18)]"
+                className="text-[10px] sm:text-[11px] transition-colors hover:border-white/16"
               >
                 {text}
               </Badge>
@@ -254,7 +254,7 @@ export function Location() {
               onClick={() => scrollGallery("left")}
               disabled={!canScrollLeft}
               aria-label="Ver fotos anteriores"
-              className="structure-gallery-nav structure-gallery-nav--left glass-card absolute top-1/2 left-2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 text-neon-gold shadow-[0_0_20px_rgba(0,0,0,0.45)] transition-[border-color,box-shadow,opacity,transform] duration-300 hover:border-amber-800/50 hover:shadow-[0_0_24px_rgba(251,191,36,0.45)] active:scale-95 disabled:pointer-events-none disabled:opacity-35 sm:left-4 sm:h-11 sm:w-11"
+              className="structure-gallery-nav structure-gallery-nav--left glass-card absolute top-1/2 left-2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 text-amber-400/90 shadow-[0_4px_16px_rgba(0,0,0,0.4)] transition-[border-color,opacity,transform] duration-300 hover:border-white/20 active:scale-95 disabled:pointer-events-none disabled:opacity-35 sm:left-4 sm:h-11 sm:w-11"
             >
               <ChevronLeft size={22} strokeWidth={2.5} aria-hidden />
             </button>
@@ -264,7 +264,7 @@ export function Location() {
               onClick={() => scrollGallery("right")}
               disabled={!canScrollRight}
               aria-label="Ver próximas fotos"
-              className="structure-gallery-nav structure-gallery-nav--right glass-card absolute top-1/2 right-2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 text-neon-gold shadow-[0_0_20px_rgba(0,0,0,0.45)] transition-[border-color,box-shadow,opacity,transform] duration-300 hover:border-amber-800/50 hover:shadow-[0_0_24px_rgba(251,191,36,0.45)] active:scale-95 disabled:pointer-events-none disabled:opacity-35 sm:right-4 sm:h-11 sm:w-11"
+              className="structure-gallery-nav structure-gallery-nav--right glass-card absolute top-1/2 right-2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 text-amber-400/90 shadow-[0_4px_16px_rgba(0,0,0,0.4)] transition-[border-color,opacity,transform] duration-300 hover:border-white/20 active:scale-95 disabled:pointer-events-none disabled:opacity-35 sm:right-4 sm:h-11 sm:w-11"
             >
               <ChevronRight size={22} strokeWidth={2.5} aria-hidden />
             </button>

@@ -3,15 +3,14 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { getWhatsAppHref } from "@/lib/site-contact";
+import { WhatsAppLink } from "@/components/WhatsAppLink";
 
 const navLinks = [
-  { label: "Início",     href: "#inicio"    },
-  { label: "Planos",     href: "#planos"    },
-  { label: "Estrutura",  href: "#estrutura" },
-  { label: "Modalidades", href: "#modalidades" },
-  { label: "Resultados", href: "#resultados"},
-  { label: "Contato",    href: "#contato"   },
+  { label: "Início",      href: "#inicio"     },
+  { label: "Planos",      href: "#planos"     },
+  { label: "Estrutura",   href: "#estrutura"  },
+  { label: "Avaliações",  href: "#resultados" },
+  { label: "Contato",     href: "#contato"    },
 ];
 
 export function Navbar() {
@@ -24,6 +23,13 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
   return (
     <>
       <header
@@ -33,33 +39,25 @@ export function Navbar() {
       >
         <div className="mx-auto flex h-[70px] max-w-7xl items-center justify-between px-6 lg:px-12">
           {/* ── Logo ── */}
-          <a href="#inicio" className="group flex items-center gap-1.5">
+          <a href="#inicio" className="group shrink-0">
             <Image
               src="/icon.png"
               alt="Academia Imperial"
               width={1432}
               height={901}
               unoptimized
-              className="navbar-logo-icon h-11 w-auto max-h-12 shrink-0 sm:h-12 sm:max-h-14"
+              className="navbar-logo-icon h-14 w-auto max-h-16 shrink-0 sm:h-16 sm:max-h-[4.5rem]"
               priority
             />
-            <div className="flex flex-col leading-none">
-              <span className="text-[9px] font-semibold tracking-[0.2em] text-zinc-400 uppercase sm:text-[10px]">
-                Academia
-              </span>
-              <span className="font-display text-lg tracking-[0.06em] text-white sm:text-xl">
-                IMPERIAL
-              </span>
-            </div>
           </a>
 
           {/* ── Desktop Nav ── */}
-          <nav className="hidden items-center gap-1 md:flex">
+          <nav className="hidden items-center gap-1 md:flex" aria-label="Principal">
             {navLinks.map(({ label, href }) => (
               <a
                 key={label}
                 href={href}
-                className="px-4 py-2 text-[13px] font-medium tracking-wide text-zinc-400 transition-colors duration-200 hover:text-white"
+                className="rounded-lg px-4 py-2 text-sm font-medium tracking-wide text-zinc-400 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#060608]"
               >
                 {label}
               </a>
@@ -68,19 +66,16 @@ export function Navbar() {
 
           {/* ── CTA + Mobile Toggle ── */}
           <div className="flex items-center gap-3">
-            <a
-              href={getWhatsAppHref()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="wpp-gold-pulse btn-shimmer relative hidden overflow-visible rounded-lg bg-amber-600 px-5 py-2.5 text-[13px] font-semibold tracking-wide text-white transition-all duration-300 hover:bg-amber-500 md:inline-flex"
-            >
+            <WhatsAppLink className="wpp-gold-pulse btn-shimmer relative hidden items-center justify-center overflow-visible rounded-lg bg-amber-600 px-5 py-2.5 text-sm font-semibold tracking-wide text-white transition-all duration-300 hover:bg-amber-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#060608] md:inline-flex">
               Falar no WhatsApp
-            </a>
+            </WhatsAppLink>
 
             <button
+              type="button"
               onClick={() => setMobileOpen((o) => !o)}
-              aria-label="Menu"
-              className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-zinc-400 transition-colors hover:border-white/20 hover:text-white md:hidden"
+              aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
+              aria-expanded={mobileOpen}
+              className="flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-zinc-400 transition-colors hover:border-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#060608] md:hidden"
             >
               {mobileOpen ? (
                 <X size={18} />
@@ -107,21 +102,16 @@ export function Navbar() {
                 key={label}
                 href={href}
                 onClick={() => setMobileOpen(false)}
-                className="rounded-xl px-4 py-3 text-sm font-medium text-zinc-400 transition-colors hover:bg-white/5 hover:text-white"
+                className="rounded-xl px-4 py-3 text-sm font-medium text-zinc-400 transition-colors hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600/60 focus-visible:ring-inset"
               >
                 {label}
               </a>
             ))}
           </nav>
           <div className="mt-3 border-t border-white/5 pt-3">
-            <a
-              href={getWhatsAppHref()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="wpp-gold-pulse block rounded-xl bg-amber-600 px-4 py-3 text-center text-sm font-semibold text-white"
-            >
+            <WhatsAppLink className="wpp-gold-pulse block rounded-xl bg-amber-600 px-4 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-amber-500">
               Falar no WhatsApp
-            </a>
+            </WhatsAppLink>
           </div>
         </div>
       </div>

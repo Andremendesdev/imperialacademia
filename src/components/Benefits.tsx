@@ -37,17 +37,17 @@ function BenefitCard({
   return (
     <div
       role="listitem"
-      className={`group/benefit glass-card flex items-center gap-3 rounded-xl border border-white/8 p-3.5 transition-[border-color,box-shadow] duration-500 hover:border-amber-800/45 hover:shadow-[0_0_28px_rgba(217,119,6,0.18)] motion-reduce:transition-none sm:gap-3.5 sm:p-4 lg:p-4 ${
+      className={`group/benefit glass-card flex items-center gap-3 rounded-xl border border-white/8 p-3.5 transition-[border-color,background] duration-300 hover:border-white/14 hover:bg-white/[0.03] motion-reduce:transition-none sm:gap-3.5 sm:p-4 lg:p-4 ${
         visible ? `animate-scale-in ${delayClass}` : "opacity-0"
       }`}
     >
       <div
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-amber-800/30 bg-amber-950/40 shadow-[0_0_14px_rgba(217,119,6,0.18)] transition-shadow duration-500 group-hover/benefit:border-amber-600/50 group-hover/benefit:shadow-[0_0_20px_rgba(217,119,6,0.3)] sm:h-10 sm:w-10 sm:rounded-xl"
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] transition-colors duration-300 group-hover/benefit:border-amber-800/35 sm:h-10 sm:w-10 sm:rounded-xl"
         aria-hidden
       >
         <Icon size={18} className="neon-icon-gold sm:h-5 sm:w-5" />
       </div>
-      <h3 className="text-xs font-semibold leading-snug tracking-wide text-zinc-100 sm:text-sm lg:text-[0.9rem]">
+      <h3 className="text-xs font-semibold leading-snug tracking-wide text-zinc-100 sm:text-sm">
         {title}
       </h3>
     </div>
