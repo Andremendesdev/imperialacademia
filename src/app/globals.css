@@ -138,7 +138,7 @@
   .animate-slide-in-left,
   .animate-hero-btn-in,
   .animate-whatsapp-fab-enter,
-  .hero-bg-video,
+  .hero-kb-image,
   .hero-cinematic-bloom,
   .hero-film-grain {
     animation: none !important;
@@ -168,37 +168,97 @@
   }
 }
 
-/* Hero background — vídeo cinematográfico (arquivo gravado de lado) */
-.hero-video-wrap {
+/* Hero background — slideshow Ken Burns (galeria) */
+.hero-slideshow {
   background: var(--bg-deep);
   isolation: isolate;
+  opacity: 0;
+  transition: opacity 0.45s ease;
 }
 
-.hero-bg-video {
+.hero-slideshow.is-ready {
+  opacity: 1;
+}
+
+.hero-kb-slide {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  /* Após rotate(-90deg), width vira altura visual e height vira largura visual */
-  width: 100vh;
-  height: 100vw;
-  max-width: none;
+  inset: 0;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-kb-slide.is-active {
+  opacity: 1;
+  z-index: 2;
+}
+
+.hero-kb-slide.is-leaving {
+  opacity: 0;
+  z-index: 1;
+}
+
+.hero-kb-image {
   object-fit: cover;
   object-position: center center;
-  transform: translate(-50%, -50%) rotate(-90deg);
-  /* Color grade base: contraste cinematográfico + tom quente da marca */
+  transform: scale(1.08);
+  transform-origin: center center;
   filter:
-    contrast(1.12)
-    saturate(0.78)
-    brightness(0.88)
-    sepia(0.18)
-    hue-rotate(-6deg);
-  pointer-events: none;
-  animation: hero-video-breathe 18s ease-in-out infinite alternate;
+    contrast(1.08)
+    saturate(0.85)
+    brightness(0.9)
+    sepia(0.12)
+    hue-rotate(-4deg);
+  will-change: transform;
+  animation: none;
+  /* sem transition no transform — conflita com o Ken Burns */
 }
 
-@keyframes hero-video-breathe {
-  from { transform: translate(-50%, -50%) rotate(-90deg) scale(1); }
-  to   { transform: translate(-50%, -50%) rotate(-90deg) scale(1.045); }
+.hero-kb-slide:not(.is-active):not(.is-leaving) .hero-kb-image {
+  animation: none !important;
+  transform: scale(1.08);
+}
+
+.hero-kb-slide.is-active .hero-kb-image {
+  animation: hero-ken-burns-a 5s linear forwards;
+}
+
+.hero-kb-slide.is-leaving .hero-kb-image {
+  animation: none;
+  transform: scale(1.18) translate(-2%, -1.5%);
+}
+
+.hero-kb-slide[data-pan="1"].is-active .hero-kb-image {
+  animation-name: hero-ken-burns-b;
+}
+
+.hero-kb-slide[data-pan="1"].is-leaving .hero-kb-image {
+  transform: scale(1.18) translate(2%, -1%);
+}
+
+.hero-kb-slide[data-pan="2"].is-active .hero-kb-image {
+  animation-name: hero-ken-burns-c;
+}
+
+.hero-kb-slide[data-pan="2"].is-leaving .hero-kb-image {
+  transform: scale(1.18) translate(-1%, 2%);
+}
+
+@keyframes hero-ken-burns-a {
+  from { transform: scale(1.08) translate(0, 0); }
+  to   { transform: scale(1.18) translate(-2%, -1.5%); }
+}
+
+@keyframes hero-ken-burns-b {
+  from { transform: scale(1.08) translate(0, 0); }
+  to   { transform: scale(1.18) translate(2%, -1%); }
+}
+
+@keyframes hero-ken-burns-c {
+  from { transform: scale(1.08) translate(0, 0); }
+  to   { transform: scale(1.18) translate(-1%, 2%); }
 }
 
 /* ─── Color grading overlays ─────────────────────────────────────────── */
@@ -328,21 +388,18 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-bg-video {
-    display: none;
-    animation: none;
+  .hero-kb-slide {
+    transition: none;
   }
 
-  .hero-video-wrap {
-    background-image: url(/fundo2.png);
-    background-size: cover;
-    background-position: center center;
-    filter:
-      contrast(1.12)
-      saturate(0.78)
-      brightness(0.88)
-      sepia(0.18)
-      hue-rotate(-6deg);
+  .hero-slideshow {
+    opacity: 1;
+    transition: none;
+  }
+
+  .hero-kb-slide.is-active .hero-kb-image {
+    animation: none;
+    transform: scale(1.1);
   }
 
   .hero-cinematic-bloom,
@@ -580,15 +637,13 @@
 }
 
 @media (min-width: 1024px) {
-  .hero-bg-video {
-    width: max(100vh, 56.25vw);
-    height: max(100vw, 177.78vh);
+  .hero-kb-image {
     filter:
-      contrast(1.14)
-      saturate(0.8)
+      contrast(1.1)
+      saturate(0.88)
       brightness(0.92)
-      sepia(0.16)
-      hue-rotate(-6deg);
+      sepia(0.1)
+      hue-rotate(-4deg);
   }
 
   .hero-bg-scrim {
@@ -624,13 +679,13 @@
 
 /* Hero — fundo um pouco mais claro no mobile */
 @media (max-width: 1023px) {
-  .hero-bg-video {
+  .hero-kb-image {
     filter:
-      contrast(1.1)
-      saturate(0.76)
-      brightness(0.9)
-      sepia(0.2)
-      hue-rotate(-6deg);
+      contrast(1.06)
+      saturate(0.82)
+      brightness(0.92)
+      sepia(0.14)
+      hue-rotate(-4deg);
   }
 
   .hero-bg-scrim {
@@ -1117,7 +1172,7 @@
 .navbar-logo-icon {
   display: block;
   width: auto;
-  max-width: 8.25rem;
+  max-width: 9.5rem;
   object-fit: contain;
   transition: opacity 0.3s ease;
 }
@@ -1414,23 +1469,17 @@ a.group:hover .navbar-logo-icon {
   z-index: 0;
 }
 
-.loading-bg-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100vh;
-  height: 100vw;
-  max-width: none;
+.loading-bg-image {
   object-fit: cover;
   object-position: center center;
-  transform: translate(-50%, -50%) rotate(-90deg) scale(1.04);
   filter:
-    contrast(1.12)
-    saturate(0.78)
-    brightness(0.82)
-    sepia(0.18)
-    hue-rotate(-6deg);
+    contrast(1.08)
+    saturate(0.85)
+    brightness(0.78)
+    sepia(0.12)
+    hue-rotate(-4deg);
   pointer-events: none;
+  transform: scale(1.06);
 }
 
 .loading-video-grade {
@@ -1529,8 +1578,8 @@ a.group:hover .navbar-logo-icon {
     transition-duration: 0.35s;
   }
 
-  .loading-bg-video {
-    display: none;
+  .loading-bg-image {
+    transform: none;
   }
 
   .loading-video-wrap {

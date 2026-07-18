@@ -2,12 +2,20 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { dispatchLoadingReveal } from "@/lib/loading-reveal";
 
 type Phase = "enter" | "hold" | "open" | "exit" | "done";
 
 export function LoadingScreen() {
   const [phase, setPhase] = useState<Phase>("enter");
   const openedRef = useRef(false);
+  const revealedRef = useRef(false);
+
+  const revealHero = () => {
+    if (revealedRef.current) return;
+    revealedRef.current = true;
+    dispatchLoadingReveal();
+  };
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -18,6 +26,7 @@ export function LoadingScreen() {
 
     if (reduceMotion) {
       const t = window.setTimeout(() => {
+        revealHero();
         setPhase("done");
         document.body.style.overflow = "";
       }, 350);
@@ -28,7 +37,6 @@ export function LoadingScreen() {
     }
 
     const timers: number[] = [];
-    let removeVideoListener: (() => void) | undefined;
 
     const openOnce = () => {
       if (openedRef.current) return;
@@ -36,36 +44,11 @@ export function LoadingScreen() {
       setPhase("open");
     };
 
-    // Logo revela da esquerda → direita
     timers.push(window.setTimeout(() => setPhase("hold"), 80));
-
-    // Depois da logo, abre do centro junto com o vídeo
-    timers.push(
-      window.setTimeout(() => {
-        const video = document.querySelector<HTMLVideoElement>(
-          ".loading-bg-video"
-        );
-
-        if (video && video.readyState >= 2) {
-          openOnce();
-          return;
-        }
-
-        if (video) {
-          const onReady = () => openOnce();
-          video.addEventListener("loadeddata", onReady, { once: true });
-          removeVideoListener = () =>
-            video.removeEventListener("loadeddata", onReady);
-        }
-
-        // Fallback para não travar se o vídeo demorar
-        timers.push(window.setTimeout(openOnce, 1600));
-      }, 1550)
-    );
+    timers.push(window.setTimeout(openOnce, 1550));
 
     return () => {
       timers.forEach((id) => window.clearTimeout(id));
-      removeVideoListener?.();
       document.body.style.overflow = "";
     };
   }, []);
@@ -78,6 +61,8 @@ export function LoadingScreen() {
 
   useEffect(() => {
     if (phase !== "exit") return;
+    // Só revela o hero quando as cortinas já abriram e o loading começa a sumir
+    revealHero();
     const t = window.setTimeout(() => {
       setPhase("done");
       document.body.style.overflow = "";
@@ -99,26 +84,21 @@ export function LoadingScreen() {
       aria-label="Carregando Academia Imperial"
       aria-busy={!isExit}
     >
-      {/* Vídeo cinematográfico atrás das cortinas */}
       <div className="loading-video-wrap" aria-hidden>
-        <video
-          className="loading-bg-video"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-        >
-          <source src="/fundoherovid.mp4" type="video/mp4" />
-        </video>
+        <Image
+          src="/galeria-1.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="loading-bg-image"
+        />
         <div className="loading-video-grade" />
       </div>
 
-      {/* Cortinas que abrem do centro para cima e para baixo */}
       <div className="loading-curtain loading-curtain--top" aria-hidden />
       <div className="loading-curtain loading-curtain--bottom" aria-hidden />
 
-      {/* Logo central — revela da esquerda para a direita */}
       <div
         className={`loading-logo-stage ${logoActive ? "is-revealing" : ""} ${isOpen ? "is-parting" : ""}`}
       >

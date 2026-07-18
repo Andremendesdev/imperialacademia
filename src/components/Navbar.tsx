@@ -46,7 +46,7 @@ export function Navbar() {
               width={1432}
               height={901}
               unoptimized
-              className="navbar-logo-icon h-14 w-auto max-h-16 shrink-0 sm:h-16 sm:max-h-[4.5rem]"
+              className="navbar-logo-icon h-16 w-auto max-h-[4.25rem] shrink-0 sm:h-[4.5rem] sm:max-h-[4.75rem]"
               priority
             />
           </a>
