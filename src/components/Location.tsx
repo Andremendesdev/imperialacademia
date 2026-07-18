@@ -218,14 +218,14 @@ export function Location() {
             visible ? "animate-scale-in delay-100" : "opacity-0"
           }`}
         >
-          <div className="relative aspect-[4/3] w-full sm:aspect-[16/10] lg:aspect-[21/9] lg:min-h-[520px]">
+          <div className="relative aspect-[4/3] w-full sm:aspect-[3/2] lg:aspect-[16/10] lg:max-h-[560px]">
             <Image
               src={mainPhoto.src}
               alt={mainPhoto.alt}
               fill
               priority
               unoptimized
-              className="structure-photo structure-photo-hover object-cover object-center motion-reduce:transition-none"
+              className="structure-photo structure-photo-hover object-cover object-[center_30%] motion-reduce:transition-none"
               sizes="(max-width: 1024px) 100vw, 1280px"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/20 via-transparent to-transparent" />

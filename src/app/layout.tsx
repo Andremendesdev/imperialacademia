@@ -22,6 +22,11 @@ export const metadata: Metadata = {
   description:
     "Academia Imperial — estrutura de ponta, equipamentos top e acompanhamento profissional. Transforme seu corpo e supere seus limites.",
   keywords: ["academia", "musculação", "personal trainer", "fitness", "imperial"],
+  icons: {
+    icon: [{ url: "/icon.png", type: "image/png" }],
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
 };
 
 export default function RootLayout({

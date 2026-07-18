@@ -202,8 +202,8 @@
 
 .hero-kb-image {
   object-fit: cover;
-  object-position: center center;
-  transform: scale(1.08);
+  object-position: center 35%;
+  transform: scale(1.04);
   transform-origin: center center;
   filter:
     contrast(1.08)
@@ -218,7 +218,7 @@
 
 .hero-kb-slide:not(.is-active):not(.is-leaving) .hero-kb-image {
   animation: none !important;
-  transform: scale(1.08);
+  transform: scale(1.04);
 }
 
 .hero-kb-slide.is-active .hero-kb-image {
@@ -227,7 +227,7 @@
 
 .hero-kb-slide.is-leaving .hero-kb-image {
   animation: none;
-  transform: scale(1.18) translate(-2%, -1.5%);
+  transform: scale(1.1) translate(-1.2%, -1%);
 }
 
 .hero-kb-slide[data-pan="1"].is-active .hero-kb-image {
@@ -235,7 +235,7 @@
 }
 
 .hero-kb-slide[data-pan="1"].is-leaving .hero-kb-image {
-  transform: scale(1.18) translate(2%, -1%);
+  transform: scale(1.1) translate(1.2%, -0.8%);
 }
 
 .hero-kb-slide[data-pan="2"].is-active .hero-kb-image {
@@ -243,22 +243,55 @@
 }
 
 .hero-kb-slide[data-pan="2"].is-leaving .hero-kb-image {
-  transform: scale(1.18) translate(-1%, 2%);
+  transform: scale(1.1) translate(-0.8%, 1.2%);
 }
 
 @keyframes hero-ken-burns-a {
-  from { transform: scale(1.08) translate(0, 0); }
-  to   { transform: scale(1.18) translate(-2%, -1.5%); }
+  from { transform: scale(1.04) translate(0, 0); }
+  to   { transform: scale(1.1) translate(-1.2%, -1%); }
 }
 
 @keyframes hero-ken-burns-b {
-  from { transform: scale(1.08) translate(0, 0); }
-  to   { transform: scale(1.18) translate(2%, -1%); }
+  from { transform: scale(1.04) translate(0, 0); }
+  to   { transform: scale(1.1) translate(1.2%, -0.8%); }
 }
 
 @keyframes hero-ken-burns-c {
-  from { transform: scale(1.08) translate(0, 0); }
-  to   { transform: scale(1.18) translate(-1%, 2%); }
+  from { transform: scale(1.04) translate(0, 0); }
+  to   { transform: scale(1.1) translate(-0.8%, 1.2%); }
+}
+
+@media (min-width: 1024px) {
+  .hero-kb-image {
+    object-position: center 28%;
+  }
+
+  .hero-kb-slide.is-leaving .hero-kb-image {
+    transform: scale(1.08) translate(-1%, -0.8%);
+  }
+
+  .hero-kb-slide[data-pan="1"].is-leaving .hero-kb-image {
+    transform: scale(1.08) translate(1%, -0.6%);
+  }
+
+  .hero-kb-slide[data-pan="2"].is-leaving .hero-kb-image {
+    transform: scale(1.08) translate(-0.6%, 1%);
+  }
+
+  @keyframes hero-ken-burns-a {
+    from { transform: scale(1.02) translate(0, 0); }
+    to   { transform: scale(1.08) translate(-1%, -0.8%); }
+  }
+
+  @keyframes hero-ken-burns-b {
+    from { transform: scale(1.02) translate(0, 0); }
+    to   { transform: scale(1.08) translate(1%, -0.6%); }
+  }
+
+  @keyframes hero-ken-burns-c {
+    from { transform: scale(1.02) translate(0, 0); }
+    to   { transform: scale(1.08) translate(-0.6%, 1%); }
+  }
 }
 
 /* ─── Color grading overlays ─────────────────────────────────────────── */
@@ -399,7 +432,7 @@
 
   .hero-kb-slide.is-active .hero-kb-image {
     animation: none;
-    transform: scale(1.1);
+    transform: scale(1.04);
   }
 
   .hero-cinematic-bloom,
