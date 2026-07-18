@@ -42,6 +42,7 @@ export function FloatingWhatsApp() {
 
   return (
     <WhatsAppLink
+      message="Olá! Vim pelo site da Imperial Academia e gostaria de conhecer os planos."
       className="whatsapp-fab animate-whatsapp-fab-enter group fixed right-4 bottom-4 z-40 inline-flex h-14 w-14 items-center justify-center overflow-visible rounded-full bg-[#25D366] text-white shadow-[0_4px_16px_rgba(0,0,0,0.28)] ring-2 ring-[#25D366] transition-transform duration-300 hover:scale-[1.02] active:scale-[0.98] motion-reduce:transition-none motion-reduce:hover:scale-100 sm:right-6 sm:bottom-6 sm:h-14 sm:w-auto sm:justify-start sm:gap-2 sm:rounded-full sm:py-1 sm:pr-4 sm:pl-1"
       aria-label="Conversar no WhatsApp"
     >

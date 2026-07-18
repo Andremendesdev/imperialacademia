@@ -12,16 +12,27 @@ export function Hero() {
       aria-labelledby="hero-heading"
       className="relative min-h-dvh overflow-hidden bg-[var(--bg-deep)]"
     >
-      {/* Imagem de fundo — zoom cinematográfico lento na entrada */}
-      <div className="absolute inset-0 min-h-dvh overflow-hidden" aria-hidden>
-        <div
-          className="hero-bg-media hero-bg-mobile absolute inset-0 lg:hidden"
-          style={{ backgroundImage: "url(/fundo7.png)" }}
-        />
-        <div
-          className="hero-bg-media hero-bg-mobile absolute inset-0 hidden lg:block"
-          style={{ backgroundImage: "url(/fundo2.png)" }}
-        />
+      {/* Vídeo cinematográfico de fundo (orientado corretamente) */}
+      <div className="hero-video-wrap absolute inset-0 min-h-dvh overflow-hidden" aria-hidden>
+        <video
+          className="hero-bg-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/fundo2.png"
+        >
+          <source src="/fundoherovid.mp4" type="video/mp4" />
+        </video>
+        {/* Color grade + look cinematográfico */}
+        <div className="hero-grade hero-grade-shadows" />
+        <div className="hero-grade hero-grade-highlights" />
+        <div className="hero-grade hero-grade-warm" />
+        <div className="hero-grade hero-grade-contrast" />
+        <div className="hero-cinematic-bloom" />
+        <div className="hero-film-grain" />
+        <div className="hero-letterbox" />
       </div>
 
       {/* Camadas de profundidade */}
@@ -34,7 +45,6 @@ export function Hero() {
         className="hero-bg-content-scrim pointer-events-none absolute inset-0 min-h-dvh"
         aria-hidden
       />
-      <div className="hero-gold-light pointer-events-none absolute inset-0 min-h-dvh" aria-hidden />
       <div className="hero-vignette pointer-events-none absolute inset-0 min-h-dvh" aria-hidden />
       <div className="grain-overlay pointer-events-none absolute inset-0 z-1" aria-hidden />
       <div className="hero-bg-bottom-fade pointer-events-none absolute inset-x-0 bottom-0 z-2" aria-hidden />

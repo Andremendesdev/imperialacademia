@@ -6,30 +6,30 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const mainPhoto = {
-  src: "/fundo2.png",
-  alt: "Equipamentos premium na área de musculação da Academia Imperial",
+  src: "/fachada.png",
+  alt: "Fachada da Academia Imperial em Piraju",
 };
 
 const galleryPhotos = [
   {
-    src: "/equipamentos.png",
-    alt: "Vista interna da área de musculação da Academia Imperial",
+    src: "/galeria-1.png",
+    alt: "Racks de agachamento e área de musculação da Academia Imperial",
   },
   {
-    src: "/fundo.png",
-    alt: "Equipamentos de treino de alta performance",
+    src: "/galeria-2.png",
+    alt: "Estante de halteres na Academia Imperial",
   },
   {
-    src: "/fundo8.png",
-    alt: "Ambiente de treino da Academia Imperial",
+    src: "/galeria-3.png",
+    alt: "Equipamentos de musculação e estrutura da Academia Imperial",
   },
   {
-    src: "/fundo5.png",
-    alt: "Espaços amplos para musculação e condicionamento",
+    src: "/galeria-4.png",
+    alt: "Máquinas de cabo e área de musculação da Academia Imperial",
   },
   {
-    src: "/fundo7.png",
-    alt: "Estrutura completa da Academia Imperial",
+    src: "/galeria-5.png",
+    alt: "Esteiras e área de cardio da Academia Imperial",
   },
 ] as const;
 
@@ -66,7 +66,7 @@ function GalleryCard({
         sizes="(max-width: 640px) 72vw, 300px"
         draggable={false}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#060608]/15 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/15 via-transparent to-transparent" />
     </div>
   );
 }
@@ -142,10 +142,6 @@ export function Location() {
       aria-labelledby="location-heading"
       className="relative overflow-x-clip bg-[var(--bg-deep)] pt-6 pb-16 sm:pt-8 lg:pt-12 lg:pb-24"
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_0%,rgba(217,119,6,0.06)_0%,transparent_55%)]"
-        aria-hidden
-      />
       <div
         className="ambient-orb pointer-events-none absolute -right-40 top-20 h-[360px] w-[360px] rounded-full opacity-40"
         aria-hidden
@@ -232,7 +228,7 @@ export function Location() {
               className="structure-photo structure-photo-hover object-cover object-center motion-reduce:transition-none"
               sizes="(max-width: 1024px) 100vw, 1280px"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#060608]/20 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/20 via-transparent to-transparent" />
           </div>
         </div>
 

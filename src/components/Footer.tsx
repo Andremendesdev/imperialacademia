@@ -85,10 +85,6 @@ export function Footer() {
       className="footer-neon-top relative overflow-x-clip bg-[var(--bg-deep)] pt-14 pb-8 sm:pt-16 lg:pt-20"
     >
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_90%_60%_at_50%_0%,rgba(217,119,6,0.09)_0%,transparent_60%)]"
-        aria-hidden
-      />
-      <div
         className="ambient-orb pointer-events-none absolute -left-40 bottom-32 h-[320px] w-[320px] rounded-full opacity-25"
         aria-hidden
       />
@@ -268,7 +264,7 @@ export function Footer() {
 
           <div className="footer-map-frame glass-card relative overflow-hidden rounded-2xl border border-white/8 shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-[border-color] duration-500 group-hover/map:border-white/14">
             <div
-              className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-[#060608]/80 to-transparent"
+              className="pointer-events-none absolute inset-x-0 top-0 z-10 h-16 bg-gradient-to-b from-[#000000]/80 to-transparent"
               aria-hidden
             />
             {contactReady.maps ? (

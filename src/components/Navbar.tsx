@@ -57,7 +57,7 @@ export function Navbar() {
               <a
                 key={label}
                 href={href}
-                className="rounded-lg px-4 py-2 text-sm font-medium tracking-wide text-zinc-400 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#060608]"
+                className="rounded-lg px-4 py-2 text-sm font-medium tracking-wide text-zinc-400 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#000000]"
               >
                 {label}
               </a>
@@ -66,7 +66,7 @@ export function Navbar() {
 
           {/* ── CTA + Mobile Toggle ── */}
           <div className="flex items-center gap-3">
-            <WhatsAppLink className="wpp-gold-pulse btn-shimmer relative hidden items-center justify-center overflow-visible rounded-lg bg-amber-600 px-5 py-2.5 text-sm font-semibold tracking-wide text-white transition-all duration-300 hover:bg-amber-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#060608] md:inline-flex">
+            <WhatsAppLink className="wpp-gold-pulse btn-shimmer relative hidden items-center justify-center overflow-visible rounded-lg bg-amber-600 px-5 py-2.5 text-sm font-semibold tracking-wide text-white transition-all duration-300 hover:bg-amber-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#000000] md:inline-flex">
               Falar no WhatsApp
             </WhatsAppLink>
 
@@ -75,7 +75,7 @@ export function Navbar() {
               onClick={() => setMobileOpen((o) => !o)}
               aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
               aria-expanded={mobileOpen}
-              className="flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-zinc-400 transition-colors hover:border-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#060608] md:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-zinc-400 transition-colors hover:border-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-600/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#000000] md:hidden"
             >
               {mobileOpen ? (
                 <X size={18} />

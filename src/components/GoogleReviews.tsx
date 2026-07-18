@@ -123,10 +123,6 @@ export function GoogleReviews() {
       aria-labelledby="reviews-heading"
       className="relative overflow-x-clip bg-[var(--bg-deep)] py-12 sm:py-14 lg:py-16"
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_100%,rgba(217,119,6,0.06)_0%,transparent_55%)]"
-        aria-hidden
-      />
       <div className="grain-overlay pointer-events-none absolute inset-0 z-0 opacity-15" aria-hidden />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">

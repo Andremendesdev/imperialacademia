@@ -122,18 +122,15 @@ export function getWhatsAppHrefOrFallback(options?: { message?: string }): strin
   return getWhatsAppHref(options) ?? getContactFallbackHref();
 }
 
-export function getPlanWhatsAppHref(
-  planName: string,
-  billing: "monthly" | "quarterly" | "annual"
-): string {
-  const period =
-    billing === "monthly"
-      ? "mensal"
-      : billing === "quarterly"
-        ? "trimestral"
-        : "anual";
-  const safePlan = planName.trim().slice(0, 80);
+export function getPlanWhatsAppMessage(planLabel: string, detail?: string): string {
+  const safePlan = planLabel.trim().slice(0, 80);
+  const safeDetail = detail?.trim().slice(0, 120);
+  const detailPart = safeDetail ? ` (${safeDetail})` : "";
+  return `Olá! Vim pelo site da Academia Imperial e quero o Plano ${safePlan}${detailPart}. Pode me ajudar?`;
+}
+
+export function getPlanWhatsAppHref(planLabel: string, detail?: string): string {
   return getWhatsAppHrefOrFallback({
-    message: `Olá! Vim pelo site da Academia Imperial e quero o plano ${safePlan} (${period}). Pode me ajudar?`,
+    message: getPlanWhatsAppMessage(planLabel, detail),
   });
 }

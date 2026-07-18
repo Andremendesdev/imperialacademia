@@ -34,7 +34,7 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${bebasNeue.variable} ${dmSans.variable} h-full antialiased`}
     >
-      <body className="min-h-dvh bg-[#060608] font-sans text-white">
+      <body className="min-h-dvh bg-[#000000] font-sans text-white">
         {children}
         <FloatingWhatsApp />
       </body>

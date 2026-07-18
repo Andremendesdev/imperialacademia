@@ -37,15 +37,18 @@ function BenefitCard({
   return (
     <div
       role="listitem"
-      className={`group/benefit glass-card flex items-center gap-3 rounded-xl border border-white/8 p-3.5 transition-[border-color,background] duration-300 hover:border-white/14 hover:bg-white/[0.03] motion-reduce:transition-none sm:gap-3.5 sm:p-4 lg:p-4 ${
+      className={`benefit-card group/benefit relative flex items-center gap-3 overflow-hidden rounded-xl px-3.5 py-3 sm:gap-3.5 sm:px-4 sm:py-3.5 ${
         visible ? `animate-scale-in ${delayClass}` : "opacity-0"
       }`}
     >
       <div
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] transition-colors duration-300 group-hover/benefit:border-amber-800/35 sm:h-10 sm:w-10 sm:rounded-xl"
+        className="benefit-card-icon flex h-9 w-9 shrink-0 items-center justify-center rounded-lg sm:h-10 sm:w-10"
         aria-hidden
       >
-        <Icon size={18} className="neon-icon-gold sm:h-5 sm:w-5" />
+        <Icon
+          size={18}
+          className="text-amber-400 transition-transform duration-400 group-hover/benefit:scale-110 motion-reduce:transition-none sm:h-[19px] sm:w-[19px]"
+        />
       </div>
       <h3 className="text-xs font-semibold leading-snug tracking-wide text-zinc-100 sm:text-sm">
         {title}
@@ -81,50 +84,25 @@ export function Benefits() {
       ref={sectionRef}
       id="beneficios"
       aria-labelledby="benefits-heading"
-      className="relative overflow-x-clip bg-[var(--bg-deep)] py-10 sm:py-12 lg:py-16"
+      className="relative overflow-x-clip bg-[var(--bg-deep)] py-10 sm:py-12 lg:py-14"
     >
-      <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_100%,rgba(217,119,6,0.07)_0%,transparent_55%)]"
-        aria-hidden
-      />
-      <div
-        className="ambient-orb pointer-events-none absolute -left-32 top-1/3 h-[300px] w-[300px] rounded-full opacity-30"
-        aria-hidden
-      />
       <div className="grain-overlay pointer-events-none absolute inset-0 z-0 opacity-20" aria-hidden />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="mb-4 max-w-2xl sm:mb-6 lg:mb-8">
-          <Badge
-            variant="section"
-            className={`badge-section w-fit ${
-              visible ? "animate-slide-up" : "opacity-0"
-            }`}
-          >
+        <div
+          className={`mb-5 max-w-2xl sm:mb-6 lg:mb-7 ${visible ? "animate-slide-up" : "opacity-0"}`}
+        >
+          <Badge variant="section" className="badge-section w-fit">
             <span className="badge-section-dot" aria-hidden />
             Benefícios
           </Badge>
 
-          <h2
-            id="benefits-heading"
-            className={`space-y-0 leading-none ${
-              visible ? "animate-slide-up delay-100" : "opacity-0"
-            }`}
-          >
-            <span className="section-title-top">
-              MAIS QUE UMA ACADEMIA.
-            </span>
-            <span className="section-title-bottom">
-              UM NOVO ESTILO DE VIDA.
-            </span>
+          <h2 id="benefits-heading" className="space-y-0 leading-none">
+            <span className="section-title-top">MAIS QUE UMA ACADEMIA.</span>
+            <span className="section-title-bottom">UM NOVO ESTILO DE VIDA.</span>
           </h2>
 
-          <div
-            className={`mt-3 flex items-center gap-3 sm:mt-4 ${
-              visible ? "animate-slide-up delay-200" : "opacity-0"
-            }`}
-            aria-hidden
-          >
+          <div className="mt-3 flex items-center gap-3 sm:mt-4" aria-hidden>
             <div className="neon-gold-line h-px w-10" />
             <div className="neon-gold-line neon-gold-line--dot h-[3px] w-[3px] rounded-full" />
             <div className="neon-gold-line neon-gold-line--fade h-px w-4" />
@@ -132,7 +110,7 @@ export function Benefits() {
         </div>
 
         <div
-          className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3 lg:gap-4"
+          className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3 lg:gap-3"
           role="list"
           aria-label="Benefícios da Academia Imperial"
         >
