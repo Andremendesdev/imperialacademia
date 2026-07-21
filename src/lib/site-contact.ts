@@ -48,11 +48,11 @@ export const siteContact = {
   social: {
     instagram: readEnv(
       "NEXT_PUBLIC_INSTAGRAM_URL",
-      "https://instagram.com/imperial.piraju"
+      "https://www.instagram.com/imperial.piraju/"
     ),
     facebook: readEnv(
       "NEXT_PUBLIC_FACEBOOK_URL",
-      "https://facebook.com/academiaimperial"
+      "https://www.facebook.com/imperialpiraju/"
     ),
   },
 };

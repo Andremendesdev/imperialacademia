@@ -7,6 +7,41 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppLink } from "@/components/WhatsAppLink";
 import { onLoadingReveal } from "@/lib/loading-reveal";
+import { siteContact } from "@/lib/site-contact";
+
+function InstagramIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+    </svg>
+  );
+}
+
+function FacebookIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden
+    >
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+    </svg>
+  );
+}
 
 const HERO_SLIDES = [
   {
@@ -112,10 +147,10 @@ export function Hero() {
     <section
       id="inicio"
       aria-labelledby="hero-heading"
-      className="relative min-h-dvh overflow-hidden bg-[var(--bg-deep)]"
+      className="relative h-dvh min-h-dvh overflow-hidden bg-[var(--bg-deep)]"
     >
       <div
-        className={`hero-slideshow absolute inset-0 min-h-dvh overflow-hidden${
+        className={`hero-slideshow absolute inset-0 overflow-hidden${
           slideshowReady ? " is-ready" : ""
         }`}
         aria-hidden
@@ -154,20 +189,45 @@ export function Hero() {
         <div className="hero-letterbox" />
       </div>
 
-      <div className="hero-bg-scrim pointer-events-none absolute inset-0 min-h-dvh" aria-hidden />
+      <div className="hero-bg-scrim pointer-events-none absolute inset-0" aria-hidden />
       <div
-        className="hero-side-scrim pointer-events-none absolute inset-0 hidden min-h-dvh lg:block"
+        className="hero-side-scrim pointer-events-none absolute inset-0 hidden lg:block"
         aria-hidden
       />
       <div
-        className="hero-bg-content-scrim pointer-events-none absolute inset-0 min-h-dvh"
+        className="hero-bg-content-scrim pointer-events-none absolute inset-0"
         aria-hidden
       />
-      <div className="hero-vignette pointer-events-none absolute inset-0 min-h-dvh" aria-hidden />
+      <div className="hero-vignette pointer-events-none absolute inset-0" aria-hidden />
       <div className="grain-overlay pointer-events-none absolute inset-0 z-1" aria-hidden />
       <div className="hero-bg-bottom-fade pointer-events-none absolute inset-x-0 bottom-0 z-2" aria-hidden />
 
-      <div className="relative z-10 flex min-h-dvh flex-col pt-[70px] pb-10 sm:pb-12 lg:pt-[calc(70px+2rem)] lg:pb-16">
+      <div className="relative z-10 flex h-full min-h-0 flex-col pt-[70px] pb-12 sm:pb-14 lg:pt-[calc(70px+2rem)] lg:pb-16">
+        <div
+          className={`absolute top-[calc(70px+0.75rem)] right-5 z-20 flex flex-col items-center gap-2.5 sm:top-[calc(70px+1rem)] sm:right-8 sm:flex-row sm:gap-3 lg:top-[calc(70px+1.5rem)] lg:right-12 ${
+            revealed ? "animate-fade-in delay-300" : "opacity-0"
+          }`}
+        >
+          <a
+            href={siteContact.social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram da Academia Imperial"
+            className="hero-social-link"
+          >
+            <InstagramIcon size={18} />
+          </a>
+          <a
+            href={siteContact.social.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook da Academia Imperial"
+            className="hero-social-link"
+          >
+            <FacebookIcon size={18} />
+          </a>
+        </div>
+
         <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-end px-6 lg:px-12">
           {/* key força remount — animações CSS só começam depois do loading */}
           <div

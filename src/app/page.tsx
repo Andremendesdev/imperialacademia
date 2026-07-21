@@ -1,6 +1,7 @@
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
+import { Partners } from "@/components/Partners";
 import { Location } from "@/components/Location";
 import { Benefits } from "@/components/Benefits";
 import { BeforeAfter } from "@/components/BeforeAfter";
@@ -14,6 +15,7 @@ export default function Home() {
       <LoadingScreen />
       <Navbar />
       <Hero />
+      <Partners />
       <Benefits />
       <Location />
       <BeforeAfter />
@@ -23,3 +25,4 @@ export default function Home() {
     </main>
   );
 }
+
