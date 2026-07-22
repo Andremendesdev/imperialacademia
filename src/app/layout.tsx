@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, DM_Sans } from "next/font/google";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -18,6 +19,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   title: "Academia Imperial | Treinamento de Alto Nível",
   description:
     "Academia Imperial — estrutura de ponta, equipamentos top e acompanhamento profissional. Transforme seu corpo e supere seus limites.",
