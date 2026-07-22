@@ -34,6 +34,13 @@ const transformations = [
       alt: "Aluna da Academia Imperial — depois",
     },
   },
+  {
+    id: "4",
+    combined: {
+      src: "/fotochange.jpeg",
+      alt: "Transformação antes e depois de aluno da Academia Imperial",
+    },
+  },
 ] as const;
 
 function PhotoLabel({ children }: { children: string }) {
@@ -178,7 +185,7 @@ export function BeforeAfter() {
         </div>
 
         <div
-          className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6"
+          className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-2 lg:gap-6"
           role="list"
           aria-label="Transformações antes e depois"
         >
