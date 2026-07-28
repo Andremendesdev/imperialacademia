@@ -19,14 +19,14 @@ const transformations = [
       alt: "Aluno da Academia Imperial — antes",
     },
     after: {
-      src: "/resultados/depois-1.png",
+      src: "/resultados/antes-2.png",
       alt: "Aluno da Academia Imperial — depois",
     },
   },
   {
     id: "3",
     before: {
-      src: "/resultados/antes-2.png",
+      src: "/resultados/depois-1.png",
       alt: "Aluna da Academia Imperial — antes",
     },
     after: {
