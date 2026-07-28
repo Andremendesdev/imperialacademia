@@ -42,8 +42,14 @@ export const siteContact = {
     ),
   },
   hours: {
-    weekdays: { label: "Seg — Sex", time: "05h às 22h" },
-    weekend: { label: "Sábado", time: "05h às 13h" },
+    weekdays: {
+      label: readEnv("NEXT_PUBLIC_HOURS_WEEKDAYS_LABEL", "Seg — Sex"),
+      time: readEnv("NEXT_PUBLIC_HOURS_WEEKDAYS_TIME", "05h às 22h"),
+    },
+    weekend: {
+      label: readEnv("NEXT_PUBLIC_HOURS_WEEKEND_LABEL", "Sábado"),
+      time: readEnv("NEXT_PUBLIC_HOURS_WEEKEND_TIME", "08h às 13h"),
+    },
   },
   social: {
     instagram: readEnv(
