@@ -16,17 +16,17 @@ const transformations = [
     id: "2",
     before: {
       src: "/resultados/antes-1.png",
-      alt: "Alunos da Academia Imperial — antes",
+      alt: "Aluno da Academia Imperial — antes",
     },
     after: {
-      src: "/resultados/antes-2.png",
-      alt: "Aluna da Academia Imperial — depois",
+      src: "/resultados/depois-1.png",
+      alt: "Aluno da Academia Imperial — depois",
     },
   },
   {
     id: "3",
     before: {
-      src: "/resultados/depois-1.png",
+      src: "/resultados/antes-2.png",
       alt: "Aluna da Academia Imperial — antes",
     },
     after: {
@@ -36,6 +36,17 @@ const transformations = [
   },
   {
     id: "4",
+    before: {
+      src: "/resultados/antes-3.jpeg",
+      alt: "Aluno da Academia Imperial — antes",
+    },
+    after: {
+      src: "/resultados/depois-3.jpeg",
+      alt: "Aluno da Academia Imperial — depois",
+    },
+  },
+  {
+    id: "5",
     combined: {
       src: "/fotochange.jpeg",
       alt: "Transformação antes e depois de aluno da Academia Imperial",

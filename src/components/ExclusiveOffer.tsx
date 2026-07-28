@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { ArrowDown, Flame, Gift } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { ArrowDown, Check, ClipboardCopy, Flame, Gift } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { WhatsAppLink } from "@/components/WhatsAppLink";
@@ -12,11 +12,17 @@ const DISCOUNT_PERCENT = Math.round(
   ((REGULAR_2_MONTHS - PROMO_PRICE) / REGULAR_2_MONTHS) * 100
 );
 
-const OFFER_WHATSAPP_MESSAGE = `Olá! Vi a promoção exclusiva do site (${DISCOUNT_PERCENT}% off) e gostaria de garantir o plano de 2 meses por R$ ${PROMO_PRICE} (de R$ ${REGULAR_2_MONTHS}).`;
+const PIX_KEY = "30384977000110";
+const COUNTDOWN_SECONDS = 120;
+
+const COMPROVANTE_WHATSAPP_MESSAGE = `Olá! Acabei de fazer o PIX da promoção exclusiva do site (${DISCOUNT_PERCENT}% off — plano de 2 meses por R$ ${PROMO_PRICE}). Segue o comprovante:`;
 
 export function ExclusiveOffer() {
   const sectionRef = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
+  const [pixCopied, setPixCopied] = useState(false);
+  const [secondsLeft, setSecondsLeft] = useState(COUNTDOWN_SECONDS);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -35,6 +41,51 @@ export function ExclusiveOffer() {
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  /* Countdown timer — starts when PIX is copied */
+  useEffect(() => {
+    if (!pixCopied) return;
+
+    timerRef.current = setInterval(() => {
+      setSecondsLeft((prev) => {
+        if (prev <= 1) {
+          if (timerRef.current) clearInterval(timerRef.current);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [pixCopied]);
+
+  const handleCopyPix = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(PIX_KEY);
+    } catch {
+      /* Fallback for older browsers */
+      const ta = document.createElement("textarea");
+      ta.value = PIX_KEY;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+    }
+    setPixCopied(true);
+    setSecondsLeft(COUNTDOWN_SECONDS);
+  }, []);
+
+  const formatTime = (s: number) => {
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return `${m}:${sec.toString().padStart(2, "0")}`;
+  };
+
+  const progress = secondsLeft / COUNTDOWN_SECONDS;
 
   return (
     <section
@@ -122,8 +173,9 @@ export function ExclusiveOffer() {
             visible ? "animate-fade-in delay-400" : "opacity-0"
           }`}
         >
-          Clique no botão abaixo e fale com nossa equipe pelo WhatsApp para
-          garantir sua promoção exclusiva.
+          {pixCopied
+            ? "PIX copiado! Faça o pagamento e envie o comprovante pelo WhatsApp."
+            : "Clique no botão abaixo para copiar a chave PIX e efetuar o pagamento."}
         </p>
 
         <div
@@ -131,32 +183,110 @@ export function ExclusiveOffer() {
             visible ? "animate-scale-in delay-500" : "opacity-0"
           }`}
         >
-          <div className="offer-arrow mb-3 flex flex-col items-center" aria-hidden>
-            <ArrowDown
-              size={18}
-              strokeWidth={2}
-              className="offer-arrow-icon text-amber-400/80"
-            />
-          </div>
+          {/* ── PIX copied state ── */}
+          {pixCopied ? (
+            <div className="flex w-full max-w-md flex-col items-center gap-5">
+              {/* PIX key display box */}
+              <div className="relative w-full overflow-hidden rounded-xl border border-amber-500/30 bg-amber-950/20 backdrop-blur-sm">
+                <div className="flex items-center justify-between gap-3 px-5 py-4">
+                  <div className="flex flex-col items-start gap-1">
+                    <span className="text-[10px] font-semibold tracking-[0.2em] text-amber-400/70 uppercase">
+                      Chave PIX (CNPJ)
+                    </span>
+                    <span className="font-mono text-base font-semibold tracking-wider text-amber-200 sm:text-lg">
+                      {PIX_KEY}
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleCopyPix}
+                    className="flex items-center gap-1.5 rounded-lg border border-amber-500/25 bg-amber-500/10 px-3 py-2 text-xs font-semibold text-amber-400 transition-colors hover:bg-amber-500/20"
+                    aria-label="Copiar chave PIX novamente"
+                  >
+                    <Check size={14} aria-hidden />
+                    Copiado
+                  </button>
+                </div>
 
-          <Button
-            asChild
-            variant="default"
-            size="lg"
-            className="offer-cta btn-shimmer wpp-gold-pulse h-14 w-full max-w-md rounded-xl px-8 text-base font-bold tracking-wide sm:h-[3.75rem] sm:text-lg"
-          >
-            <WhatsAppLink
-              message={OFFER_WHATSAPP_MESSAGE}
-              aria-label="Garantir promoção exclusiva no WhatsApp"
-            >
-              Quero garantir minha promoção
-            </WhatsAppLink>
-          </Button>
+                {/* Countdown progress bar */}
+                <div className="relative h-1.5 w-full overflow-hidden bg-white/5">
+                  <div
+                    className="absolute inset-y-0 left-0 rounded-r-full transition-[width] duration-1000 ease-linear"
+                    style={{
+                      width: `${progress * 100}%`,
+                      background:
+                        progress > 0.3
+                          ? "linear-gradient(90deg, #d97706, #f59e0b)"
+                          : progress > 0.1
+                            ? "linear-gradient(90deg, #ea580c, #f97316)"
+                            : "linear-gradient(90deg, #dc2626, #ef4444)",
+                    }}
+                  />
+                </div>
+              </div>
 
-          <p className="offer-note mt-4 max-w-[32ch] text-[11px] leading-relaxed tracking-wide text-zinc-600">
-            Promoção exclusiva do site · Válida mediante confirmação no
-            WhatsApp · Sujeita à disponibilidade
-          </p>
+              {/* Countdown label */}
+              <p className="flex items-center gap-2 text-sm text-zinc-400">
+                <span
+                  className={`font-mono text-base font-bold ${
+                    secondsLeft <= 30 ? "text-red-400" : "text-amber-400"
+                  }`}
+                >
+                  {formatTime(secondsLeft)}
+                </span>
+                {secondsLeft > 0
+                  ? "para efetuar o pagamento"
+                  : "Tempo expirado — copie novamente"}
+              </p>
+
+              {/* WhatsApp CTA for sending receipt */}
+              <Button
+                asChild
+                variant="default"
+                size="lg"
+                className="offer-cta btn-shimmer wpp-gold-pulse h-14 w-full rounded-xl px-8 text-base font-bold tracking-wide sm:h-[3.75rem] sm:text-lg"
+              >
+                <WhatsAppLink
+                  message={COMPROVANTE_WHATSAPP_MESSAGE}
+                  aria-label="Enviar comprovante do PIX no WhatsApp"
+                >
+                  Enviar comprovante no WhatsApp
+                </WhatsAppLink>
+              </Button>
+
+              <p className="offer-note max-w-[32ch] text-[11px] leading-relaxed tracking-wide text-zinc-600">
+                Após o pagamento, envie o comprovante pelo WhatsApp para confirmar
+                sua matrícula com a promoção exclusiva.
+              </p>
+            </div>
+          ) : (
+            /* ── Initial state — copy PIX button ── */
+            <>
+              <div className="offer-arrow mb-3 flex flex-col items-center" aria-hidden>
+                <ArrowDown
+                  size={18}
+                  strokeWidth={2}
+                  className="offer-arrow-icon text-amber-400/80"
+                />
+              </div>
+
+              <Button
+                variant="default"
+                size="lg"
+                onClick={handleCopyPix}
+                className="offer-cta btn-shimmer wpp-gold-pulse h-14 w-full max-w-md rounded-xl px-8 text-base font-bold tracking-wide sm:h-[3.75rem] sm:text-lg"
+                aria-label="Copiar chave PIX para pagamento"
+              >
+                <ClipboardCopy size={18} className="mr-1" aria-hidden />
+                Copiar chave PIX e pagar
+              </Button>
+
+              <p className="offer-note mt-4 max-w-[32ch] text-[11px] leading-relaxed tracking-wide text-zinc-600">
+                Promoção exclusiva do site · Pagamento via PIX ·
+                Sujeita à disponibilidade
+              </p>
+            </>
+          )}
         </div>
       </div>
     </section>

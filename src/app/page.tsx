@@ -5,7 +5,7 @@ import { Partners } from "@/components/Partners";
 import { Location } from "@/components/Location";
 import { Benefits } from "@/components/Benefits";
 import { BeforeAfter } from "@/components/BeforeAfter";
-// import { ExclusiveOffer } from "@/components/ExclusiveOffer";
+import { ExclusiveOffer } from "@/components/ExclusiveOffer";
 import { Pricing } from "@/components/Pricing";
 import { GoogleReviews } from "@/components/GoogleReviews";
 import { Footer } from "@/components/Footer";
@@ -20,7 +20,7 @@ export default function Home() {
       <Benefits />
       <Location />
       <BeforeAfter />
-      {/* <ExclusiveOffer /> */}
+      <ExclusiveOffer />
       <Pricing />
       <GoogleReviews />
       <Footer />
