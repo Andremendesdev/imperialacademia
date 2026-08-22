@@ -30,7 +30,7 @@ const partners: Partner[] = [
     id: "chip",
     kind: "image",
     src: "/logochip.png",
-    alt: "Chiptronic",
+    alt: "Campo Harmonia do Vitinho",
     className: "partners-logo--chip",
     plate: true,
   },
