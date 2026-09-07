@@ -20,7 +20,7 @@ export default function Home() {
       <Benefits />
       <Location />
       <BeforeAfter />
-      <ExclusiveOffer />
+     
       <Pricing />
       <GoogleReviews />
       <Footer />
